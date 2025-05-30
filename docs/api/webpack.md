@@ -1,185 +1,185 @@
 # Webpack
 
-`Webpack` is a utility class for getting internal webpack modules. Instance is accessible through the [BdApi](./bdapi). This is extremely useful for interacting with the internals of Discord.
+와! `Webpack`은 내부 webpack 모듈들을 가져오는 데 정말 유용한 유틸리티 클래스예요! 🛠️ [BdApi](./bdapi)를 통해 인스턴스에 접근할 수 있어요. Discord의 내부 구조와 상호작용할 때 정말 강력한 도구랍니다.
 
-## Properties
+## 속성들 (Properties)
 
 ### Filters
-Series of [Filters](./filters) to be used for finding webpack modules.
+모듈을 찾는 데 사용할 [Filters](./filters) 시리즈예요! 정말 편리하죠? 😊
 
-**Type:** `Filters`
+**타입:** `Filters`
 ___
 
 ### modules
-A Proxy that returns the module source by ID.
+ID로 모듈 소스를 반환하는 Proxy예요. 마법 같지 않나요? ✨
 
-**Type:** `modules`
+**타입:** `modules`
 ___
 
 
-## Methods
+## 메서드들 (Methods)
 
 ### getAllByKeys
-Finds all modules with a set of properties.
+특정 속성들을 가진 모든 모듈을 찾아줘요! 한 번에 여러 개를 찾을 수 있어서 정말 효율적이에요.
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-props|...string|Properties to use to filter modules
+props|...string|모듈을 필터링할 때 사용할 속성들
 
-**Returns:** `Array.<Any>`
+**반환값:** `Array.<Any>`
 ___
 
 ### getAllByPrototypeKeys
-Finds all modules with a set of properties of its prototype.
+프로토타입의 특정 속성들을 가진 모든 모듈을 찾아줘요! 객체지향 프로그래밍의 매력이 느껴지죠? 😍
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-prototypes|...string|Properties to use to filter modules
+prototypes|...string|모듈을 필터링할 때 사용할 속성들
 
-**Returns:** `Array.<Any>`
+**반환값:** `Array.<Any>`
 ___
 
 ### getAllByRegex
-Finds all modules using its code.
+정규표현식으로 모듈 코드를 검색해줘요! 정말 강력한 기능이에요. 🔍
 
-| Parameter |  Type  | Optional | Default |       Description      |
+| 매개변수 |  타입  | 선택사항 | 기본값 |       설명      |
 |:----------|:------:|:--------:|:-------:|:----------------------:|
-regex|RegEx|&#x274C;|*none*|A regular expression to use to filter modules
-options|object|&#x2705;|*none*|Options to configure the search
-options.defaultExport|Boolean|&#x2705;|true|Whether to return default export when matching the default export
-options.searchExports|Boolean|&#x2705;|false|Whether to execute the filter on webpack exports
+regex|RegEx|&#x274C;|*없음*|모듈을 필터링할 정규표현식
+options|object|&#x2705;|*없음*|검색을 설정하는 옵션들
+options.defaultExport|Boolean|&#x2705;|true|기본 export와 매칭될 때 기본 export를 반환할지 여부
+options.searchExports|Boolean|&#x2705;|false|webpack exports에서 필터를 실행할지 여부
 
-**Returns:** `Array.<Any>`
+**반환값:** `Array.<Any>`
 ___
 
 ### getAllByStrings
-Finds all modules with a set of strings.
+특정 문자열들을 포함한 모든 모듈을 찾아줘요! 간단하면서도 효과적이죠? 💪
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-strings|...String|Strings to use to filter modules
+strings|...String|모듈을 필터링할 때 사용할 문자열들
 
-**Returns:** `Array.<Any>`
+**반환값:** `Array.<Any>`
 ___
 
 ### getBulk
-Finds multiple modules using multiple filters.
+여러 필터를 사용해서 한 번에 여러 모듈을 찾아줘요! 대량 처리의 황제예요! 👑
 
-| Parameter |  Type  | Optional | Default |       Description      |
+| 매개변수 |  타입  | 선택사항 | 기본값 |       설명      |
 |:----------|:------:|:--------:|:-------:|:----------------------:|
-queries|...object|&#x274C;|*none*|Object representing the query to perform
-queries.filter|function|&#x274C;|*none*|A function to use to filter modules
-queries.first|boolean|&#x2705;|true|Whether to return only the first matching module
-queries.defaultExport|boolean|&#x2705;|true|Whether to return default export when matching the default export
-queries.searchExports|boolean|&#x2705;|false|Whether to execute the filter on webpack exports
+queries|...object|&#x274C;|*없음*|수행할 쿼리를 나타내는 객체
+queries.filter|function|&#x274C;|*없음*|모듈을 필터링할 때 사용할 함수
+queries.first|boolean|&#x2705;|true|첫 번째 매칭 모듈만 반환할지 여부
+queries.defaultExport|boolean|&#x2705;|true|기본 export와 매칭될 때 기본 export를 반환할지 여부
+queries.searchExports|boolean|&#x2705;|false|webpack exports에서 필터를 실행할지 여부
 
-**Returns:** `any`
+**반환값:** `any`
 ___
 
 ### getByKeys
-Finds a single module using its own properties.
+자체 속성을 사용해서 단일 모듈을 찾아줘요! 정확하고 깔끔해요. ✨
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-props|...string|Properties to use to filter modules
+props|...string|모듈을 필터링할 때 사용할 속성들
 
-**Returns:** `Any`
+**반환값:** `Any`
 ___
 
 ### getByPrototypeKeys
-Finds a single module using properties on its prototype.
+프로토타입의 속성을 사용해서 단일 모듈을 찾아줘요! 객체의 깊은 곳까지 탐험할 수 있어요! 🕵️
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-prototypes|...string|Properties to use to filter modules
+prototypes|...string|모듈을 필터링할 때 사용할 속성들
 
-**Returns:** `Any`
+**반환값:** `Any`
 ___
 
 ### getByRegex
-Finds a module using its code.
+코드를 사용해서 모듈을 찾아줘요! 정규표현식의 마법을 느껴보세요! ✨
 
-| Parameter |  Type  | Optional | Default |       Description      |
+| 매개변수 |  타입  | 선택사항 | 기본값 |       설명      |
 |:----------|:------:|:--------:|:-------:|:----------------------:|
-regex|RegEx|&#x274C;|*none*|A regular expression to use to filter modules
-options|object|&#x2705;|*none*|Options to configure the search
-options.defaultExport|Boolean|&#x2705;|true|Whether to return default export when matching the default export
-options.searchExports|Boolean|&#x2705;|false|Whether to execute the filter on webpack exports
+regex|RegEx|&#x274C;|*없음*|모듈을 필터링할 정규표현식
+options|object|&#x2705;|*없음*|검색을 설정하는 옵션들
+options.defaultExport|Boolean|&#x2705;|true|기본 export와 매칭될 때 기본 export를 반환할지 여부
+options.searchExports|Boolean|&#x2705;|false|webpack exports에서 필터를 실행할지 여부
 
-**Returns:** `Any`
+**반환값:** `Any`
 ___
 
 ### getByStrings
-Finds a single module using a set of strings.
+문자열 집합을 사용해서 단일 모듈을 찾아줘요! 간단하지만 강력해요! 💪
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-props|...String|Strings to use to filter modules
+props|...String|모듈을 필터링할 때 사용할 문자열들
 
-**Returns:** `Any`
+**반환값:** `Any`
 ___
 
 ### getModule
-Finds a module using a filter function.
+필터 함수를 사용해서 모듈을 찾아줘요! 가장 유연한 방법이에요! 🎯
 
-| Parameter |  Type  | Optional | Default |       Description      |
+| 매개변수 |  타입  | 선택사항 | 기본값 |       설명      |
 |:----------|:------:|:--------:|:-------:|:----------------------:|
-filter|function|&#x274C;|*none*|A function to use to filter modules. It is given exports, module, and moduleID. Return `true` to signify match.
-options|object|&#x2705;|*none*|Options to configure the search
-options.first|boolean|&#x2705;|true|Whether to return only the first matching module
-options.defaultExport|boolean|&#x2705;|true|Whether to return default export when matching the default export
-options.searchExports|boolean|&#x2705;|false|Whether to execute the filter on webpack exports
+filter|function|&#x274C;|*없음*|모듈을 필터링할 때 사용할 함수. exports, module, moduleID가 주어져요. 매치되면 `true`를 반환하세요!
+options|object|&#x2705;|*없음*|검색을 설정하는 옵션들
+options.first|boolean|&#x2705;|true|첫 번째 매칭 모듈만 반환할지 여부
+options.defaultExport|boolean|&#x2705;|true|기본 export와 매칭될 때 기본 export를 반환할지 여부
+options.searchExports|boolean|&#x2705;|false|webpack exports에서 필터를 실행할지 여부
 
-**Returns:** `any`
+**반환값:** `any`
 ___
 
 ### getModules
-Finds all modules matching a filter function.
+필터 함수와 매칭되는 모든 모듈을 찾아줘요! 전체 목록이 필요할 때 완벽해요! 📋
 
-| Parameter |  Type  | Optional | Default |       Description      |
+| 매개변수 |  타입  | 선택사항 | 기본값 |       설명      |
 |:----------|:------:|:--------:|:-------:|:----------------------:|
-filter|function|&#x274C;|*none*|A function to use to filter modules
-options|object|&#x2705;|*none*|Options to configure the search
-options.defaultExport|Boolean|&#x2705;|true|Whether to return default export when matching the default export
-options.searchExports|Boolean|&#x2705;|false|Whether to execute the filter on webpack exports
+filter|function|&#x274C;|*없음*|모듈을 필터링할 때 사용할 함수
+options|object|&#x2705;|*없음*|검색을 설정하는 옵션들
+options.defaultExport|Boolean|&#x2705;|true|기본 export와 매칭될 때 기본 export를 반환할지 여부
+options.searchExports|Boolean|&#x2705;|false|webpack exports에서 필터를 실행할지 여부
 
-**Returns:** `Array.<any>`
+**반환값:** `Array.<any>`
 ___
 
 ### getStore
-Finds an internal Store module using the name.
+이름을 사용해서 내부 Store 모듈을 찾아줘요! Discord의 상태 관리의 핵심이에요! 🏪
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-name|String|Name of the store to find (usually includes "Store")
+name|String|찾을 store의 이름 (보통 "Store"를 포함해요)
 
-**Returns:** `Any`
+**반환값:** `Any`
 ___
 
 ### getWithKey
-Searches for a module by value, returns module & matched key. Useful in combination with the Patcher.
+값으로 모듈을 검색하고, 모듈과 매칭된 키를 반환해줘요! Patcher와 함께 사용하면 정말 유용해요! 🔧
 
-| Parameter |  Type  | Optional | Default |       Description      |
+| 매개변수 |  타입  | 선택사항 | 기본값 |       설명      |
 |:----------|:------:|:--------:|:-------:|:----------------------:|
-filter|function|&#x274C;|*none*|A function to use to filter the module. It is given exports, module, and moduleID.
-options|object|&#x2705;|*none*|Set of options to customize the search
-options.target|any|&#x2705;|*none*|Optional module target to look inside.
-options.defaultExport|Boolean|&#x2705;|true|Whether to return default export when matching the default export
-options.searchExports|Boolean|&#x2705;|false|Whether to execute the filter on webpack export getters.
+filter|function|&#x274C;|*없음*|모듈을 필터링할 때 사용할 함수. exports, module, moduleID가 주어져요.
+options|object|&#x2705;|*없음*|검색을 커스터마이즈하는 옵션들
+options.target|any|&#x2705;|*없음*|내부를 살펴볼 선택적 모듈 타겟
+options.defaultExport|Boolean|&#x2705;|true|기본 export와 매칭될 때 기본 export를 반환할지 여부
+options.searchExports|Boolean|&#x2705;|false|webpack export getter에서 필터를 실행할지 여부
 
-**Returns:** `Array.<any, string>`
+**반환값:** `Array.<any, string>`
 ___
 
 ### waitForModule
-Finds a module that is lazily loaded.
+지연 로드되는 모듈을 찾아줘요! 기다림의 미학이에요! ⏰
 
-| Parameter |  Type  | Optional | Default |       Description      |
+| 매개변수 |  타입  | 선택사항 | 기본값 |       설명      |
 |:----------|:------:|:--------:|:-------:|:----------------------:|
-filter|function|&#x274C;|*none*|A function to use to filter modules. It is given exports. Return `true` to signify match.
-options|object|&#x2705;|*none*|Options for configuring the listener
-options.signal|AbortSignal|&#x2705;|*none*|AbortSignal of an AbortController to cancel the promise
-options.defaultExport|boolean|&#x2705;|true|Whether to return default export when matching the default export
-options.searchExports|boolean|&#x2705;|false|Whether to execute the filter on webpack exports
+filter|function|&#x274C;|*없음*|모듈을 필터링할 때 사용할 함수. exports가 주어져요. 매치되면 `true`를 반환하세요!
+options|object|&#x2705;|*없음*|리스너를 설정하는 옵션들
+options.signal|AbortSignal|&#x2705;|*없음*|Promise를 취소하기 위한 AbortController의 AbortSignal
+options.defaultExport|boolean|&#x2705;|true|기본 export와 매칭될 때 기본 export를 반환할지 여부
+options.searchExports|boolean|&#x2705;|false|webpack exports에서 필터를 실행할지 여부
 
-**Returns:** `Promise.<any>`
+**반환값:** `Promise.<any>` - 기다린 보람이 있을 거예요! 💝
 ___

@@ -1,131 +1,129 @@
-# Contributing to BetterDiscord
+# BetterDiscord에 기여하기 🎉
 
-Thanks for taking the time to contribute!
+BetterDiscord에 기여해주셔서 정말 감사합니다! 여러분의 소중한 시간을 내어주신 것만으로도 벌써 설레네요! ✨
 
-The following is a set of guidelines for contributing to BetterDiscord. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request. These guidelines have been adapted from [Atom](https://github.com/atom/atom/blob/master/CONTRIBUTING.md).
+다음은 BetterDiscord에 기여할 때 따라주시면 좋을 가이드라인들입니다. 딱딱한 규칙이라기보다는 친근한 안내서라고 생각해주세요! 궁금한 점이 있으시면 언제든 pull request로 이 문서의 개선을 제안해주셔도 됩니다. 이 가이드라인은 [Atom](https://github.com/atom/atom/blob/master/CONTRIBUTING.md)을 참고해서 만들어졌어요.
 
+## 행동 강령 (Code of Conduct)
 
-## Code of Conduct
+우리의 [행동 강령](https://github.com/BetterDiscord/BetterDiscord/blob/main/CODE_OF_CONDUCT.md) 페이지에서 자세한 내용을 확인해보세요! 서로 존중하며 함께 발전해나가는 커뮤니티를 만들어가요 💙
 
-See our [Code of Conduct](https://github.com/BetterDiscord/BetterDiscord/blob/main/CODE_OF_CONDUCT.md) page for details.
+## 시작하기 전에 알아두면 좋은 것들 🤔
 
-## What should I know before I get started?
+먼저 [README](./README.md)에서 프로젝트 구조를 살펴보시고, 레이아웃에 익숙해져 보세요! 그다음 [`package.json`](./package.json)을 확인하셔서 사용되는 기술 스택을 파악해보시면 됩니다. 처음에는 조금 복잡해 보일 수 있지만, 차근차근 따라가다 보면 금세 익숙해질 거예요!
 
-Review the project architecture found on the [README](./README.md) and familiarize yourself with the layout. Then check the [`package.json`](./package.json) to get familiar with the tech stack in use.
+## 어떻게 기여할 수 있을까요? 🌟
 
-## How Can I Contribute?
+### 버그 신고하기 🐛
 
-### Reporting Bugs
+이 섹션에서는 BetterDiscord의 버그를 신고하는 방법을 안내해드려요. 이런 가이드라인을 따라주시면 maintainer들과 커뮤니티가 여러분의 신고를 더 잘 이해하고, 문제를 재현하며, 관련된 다른 신고들을 찾는 데 큰 도움이 됩니다!
 
-This section guides you through submitting a bug report for BetterDiscord. Following these guidelines helps maintainers and the community understand your report, reproduce the behavior, and find related reports.
+버그 신고를 작성하기 전에 [이 체크리스트](#버그-신고-전-확인사항)를 먼저 확인해보세요. 혹시 새로운 신고를 만들 필요가 없을 수도 있거든요!
 
-Before creating bug reports, please check [this list](#before-submitting-a-bug-report) as you might find out that you don't need to create one.
+#### 버그 신고 전 확인사항 ✅
 
-#### Before Submitting A Bug Report
+* **[검색](https://github.com/BetterDiscord/docs/issues)을 해보세요** - 같은 문제가 이미 신고되었는지 확인해보세요. 이미 신고되었고 **이슈가 아직 열려있다면**, 새로운 이슈를 만드는 대신 기존 이슈에 :+1: 를 눌러주세요!
 
-* **Perform a [search](https://github.com/BetterDiscord/docs/issues)** to see if the problem has already been reported. If it has **and the issue is still open**, add a :+1: to the existing issue instead of opening a new one.
+#### 좋은 버그 신고를 작성하는 방법은? 📝
 
-#### How Do I Submit A (Good) Bug Report?
+버그는 [GitHub issues](https://guides.github.com/features/issues/)로 추적됩니다. 위의 단계를 거쳐서 새로운 버그라는 것을 확인하셨다면, 이슈를 만들어서 다음 정보들을 제공해주세요.
 
-Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/). After you've determined this is a new bug using the steps from above, create an issue and provide the following information.
+* **명확하고 설명적인 제목**을 사용해서 문제를 식별할 수 있도록 해주세요 ✨
+* **문제를 재현하는 정확한 단계들**을 최대한 자세히 설명해주세요. 예를 들어, Discord를 어떻게 시작했는지, 정확히 어떤 애드온을 사용했는지, 어떤 행동을 취했는지 설명해주세요. 단계를 나열할 때는 **무엇을 했는지뿐만 아니라 어떻게 했는지도 설명해주세요**. 예를 들어, 메뉴를 열었다면 마우스를 사용했는지, 키보드 단축키를 사용했는지, 아니면 다른 방법을 사용했는지 설명해주세요.
+* **단계를 보여주는 구체적인 예시**를 제공해주세요. 파일 링크나 GitHub 프로젝트, 또는 복사/붙여넣기 가능한 코드 조각을 포함해주세요. 코드 조각을 포함할 때는 [Markdown 코드 블록](https://help.github.com/articles/markdown-basics/#multiple-lines)을 사용해주세요.
+* **단계를 따라한 후 관찰한 동작**을 설명하고, 그 동작의 어떤 부분이 문제인지 정확히 짚어주세요 🎯
+* **대신 어떤 동작을 기대했는지와 그 이유**를 설명해주세요.
+* **스크린샷과 애니메이션 GIF**를 포함해서 설명한 단계를 따라가는 모습과 문제를 명확히 보여주세요.
 
-* **Use a clear and descriptive title** for the issue to identify the problem.
-* **Describe the exact steps which reproduce the problem** in as many details as possible. For example, start by explaining how you started Discord, e.g. which addons exactly you used, and what actions were taken. When listing steps, **don't just say what you did, but explain how you did it**. For example, if you opened a menu, explain if you used the mouse, or a keyboard shortcut or something else entirely.
-* **Provide specific examples to demonstrate the steps**. Include links to files or GitHub projects, or copy/pasteable snippets, which you use in those examples. If you're providing snippets in the issue, use [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
-* **Describe the behavior you observed after following the steps** and point out what exactly is the problem with that behavior.
-* **Explain which behavior you expected to see instead and why.**
-* **Include screenshots and animated GIFs** which show you following the described steps and clearly demonstrate the problem.
+### 개선사항 제안하기 💡
 
+이 섹션에서는 BetterDiscord에 대한 개선사항 제안을 하는 방법을 안내해드려요. 완전히 새로운 기능이든 기존 기능의 작은 개선이든 모두 환영입니다! 이런 가이드라인을 따라주시면 maintainer들과 커뮤니티가 여러분의 제안을 더 잘 이해하고 관련된 제안들을 찾는 데 도움이 됩니다.
 
-### Suggesting Enhancements
+개선사항 제안을 만들기 전에 [이 체크리스트](#개선사항-제안-전-확인사항)를 확인해보세요. 새로운 제안을 만들 필요가 없을 수도 있어요! 개선사항 제안을 만들 때는 [가능한 한 많은 세부사항](#좋은-개선사항-제안을-작성하는-방법은)을 포함해주세요. 요청하는 기능이 존재한다면 어떤 단계를 거칠지 상상해보면서 세부사항을 작성해주세요.
 
-This section guides you through submitting an enhancement suggestion for BetterDiscord, including completely new features and minor improvements to existing functionality. Following these guidelines helps maintainers and the community understand your suggestion and find related suggestions.
+#### 개선사항 제안 전 확인사항 🔍
 
-Before creating enhancement suggestions, please check [this list](#before-submitting-an-enhancement-suggestion) as you might find out that you don't need to create one. When you are creating an enhancement suggestion, please [include as many details as possible](#how-do-i-submit-a-good-enhancement-suggestion). Fill in the details including the steps that you imagine you would take if the feature you're requesting existed.
+* **이미 그런 개선사항을 제공하는 플러그인이 있는지 확인해보세요.**
+* **[검색](https://guides.github.com/features/issues/)을 해보세요** - 같은 개선사항이 이미 제안되었는지 확인해보세요. 이미 제안되었다면 새로운 이슈를 만드는 대신 기존 이슈에 :+1: 를 눌러주세요.
 
-#### Before Submitting An Enhancement Suggestion
+#### 좋은 개선사항 제안을 작성하는 방법은? 🚀
 
-* **Check if there's already a plugin which provides that enhancement.**
-* **Perform a [cursory search](https://guides.github.com/features/issues/)** to see if the enhancement has already been suggested. If it has, add a :+1: to the existing issue instead of opening a new one.
+개선사항 제안도 [GitHub issues](https://guides.github.com/features/issues/)로 추적됩니다. 위의 단계를 거쳐서 새로운 제안이라는 것을 확인하셨다면, 이슈를 만들어서 다음 정보들을 제공해주세요:
 
-#### How Do I Submit A (Good) Enhancement Suggestion?
+* **명확하고 설명적인 제목**을 사용해서 제안을 식별할 수 있도록 해주세요 ✨
+* **제안하는 개선사항의 단계별 설명**을 최대한 자세히 제공해주세요.
+* **단계를 보여주는 구체적인 예시**를 제공해주세요. [Markdown 코드 블록](https://help.github.com/articles/markdown-basics/#multiple-lines)으로 복사/붙여넣기 가능한 코드 조각을 포함해주세요.
+* **현재 동작을 설명**하고 **대신 어떤 동작을 기대하는지와 그 이유**를 설명해주세요.
+* **스크린샷과 애니메이션 GIF**를 포함해서 단계를 보여주거나 제안이 관련된 BetterDiscord의 부분을 가리켜 주세요 📸
+* **이 개선사항이 대부분의 BetterDiscord 사용자에게 왜 유용할지** 설명하고, 플러그인으로 구현할 수 있거나 구현해야 하는 것이 아닌 이유를 설명해주세요.
 
-Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com/features/issues/). After you've determined this is a new suggestion using the steps from above, create an issue and provide the following information:
-
-* **Use a clear and descriptive title** for the issue to identify the suggestion.
-* **Provide a step-by-step description of the suggested enhancement** in as many details as possible.
-* **Provide specific examples to demonstrate the steps**. Include copy/pasteable snippets which you use in those examples, as [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
-* **Describe the current behavior** and **explain which behavior you expected to see instead** and why.
-* **Include screenshots and animated GIFs** which help you demonstrate the steps or point out the part of BetterDiscord which the suggestion is related to.
-* **Explain why this enhancement would be useful** to most BetterDiscord users and isn't something that can or should be implemented as a plugin.
-
-### Your First Code Contribution
+### 첫 번째 코드 기여 🎯
 
 > [!IMPORTANT]
-> If you've found typos, it's preferred to just open an issue rather than a single character pull request!
+> 오타를 발견하셨다면, 한 글자 pull request보다는 이슈를 만들어주시는 게 좋아요!
 
-Unsure where to begin contributing? You can start by looking through `help-wanted` issues or any issues labelled `can't reproduce`.
+어디서부터 시작해야 할지 모르겠다고요? `help-wanted` 이슈나 `can't reproduce` 라벨이 붙은 이슈들을 찾아보세요. 처음 시작하기에 딱 좋은 이슈들이에요! 💪
 
-### Pull Requests
+### Pull Request 만들기 🔄
 
-Please follow these steps to have your contribution considered by the maintainers:
+maintainer들이 여러분의 기여를 검토할 때 다음 단계들을 따라주세요:
 
-1. Use a pull request template, if one exists.
-2. Follow the [styleguides](#styleguides)
-3. After you submit your pull request, verify that all [status checks](https://help.github.com/articles/about-status-checks/) are passing <details><summary>What if the status checks are failing?</summary>If a status check is failing, and you believe that the failure is unrelated to your change, please leave a comment on the pull request explaining why you believe the failure is unrelated. A maintainer will re-run the status check for you. If we conclude that the failure was a false positive, then we will open an issue to track that problem with our status check suite.</details>
+1. pull request 템플릿이 있다면 사용해주세요.
+2. [스타일가이드](#스타일가이드)를 따라주세요.
+3. pull request를 제출한 후, 모든 [status check](https://help.github.com/articles/about-status-checks/)가 통과하는지 확인해주세요 <details><summary>status check가 실패한다면?</summary>status check가 실패했는데 여러분의 변경사항과 관련이 없다고 생각되시면, pull request에 댓글로 왜 관련이 없다고 생각하는지 설명해주세요. maintainer가 status check을 다시 실행해드릴게요. 만약 false positive였다는 결론이 나면, status check 시스템의 문제를 추적하기 위한 이슈를 만들 거예요.</details>
 
-While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer(s) may ask you to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
+위의 전제조건들이 만족되어야 pull request가 검토되지만, 리뷰어가 추가적인 설계 작업, 테스트, 또는 다른 변경사항을 요청할 수 있어요. 최종적으로 승인받기까지 조금 더 작업이 필요할 수도 있답니다! 😊
 
-### Translations
+### 번역 🌏
 
-Currently, the documentation is only available in English.
+현재 문서는 영어로만 제공되고 있어요. (하지만 지금 이렇게 한국어 버전을 만들고 있잖아요! 🎉)
 
-## Styleguides
+## 스타일가이드 📝
 
-### Git Commit Messages
+### Git 커밋 메시지 ✍️
 
-* Use the present tense ("Add feature" not "Added feature")
-* Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
-* Limit the first line to 72 characters or less
-* Reference issues and pull requests liberally after the first line
-* When only changing documentation, include `[ci skip]` in the commit title
+* 현재 시제를 사용하세요 ("Add feature", "Added feature" 아님)
+* 명령형 어조를 사용하세요 ("Move cursor to...", "Moves cursor to..." 아님)
+* 첫 번째 줄은 72자 이하로 제한하세요
+* 첫 번째 줄 이후에는 이슈와 pull request를 자유롭게 참조하세요
+* 문서만 변경할 때는 커밋 제목에 `[ci skip]`을 포함하세요
 
-### TypeScript Styleguide
+### TypeScript 스타일가이드 💻
 
-All TypeScript must adhere to the [ESLint rules](https://github.com/BetterDiscord/docs/blob/main/eslint.config.js) of the repo.
+모든 TypeScript 코드는 저장소의 [ESLint 규칙](https://github.com/BetterDiscord/docs/blob/main/eslint.config.js)을 준수해야 해요.
 
-Some other style related points not covered by ESLint:
+ESLint로 커버되지 않는 다른 스타일 관련 사항들:
 
-* Use verbose variable names
-* Prefer to use react patches over DOM manipulation when possible
-* Prefer to use separate components from Discord when possible
-* Inline `export`s with expressions whenever possible
+* 상세한 변수명을 사용하세요 🏷️
+* 가능하면 DOM 조작보다는 react patch를 사용하는 것을 선호해요
+* 가능하면 Discord의 별도 컴포넌트를 사용하는 것을 선호해요
+* 가능하면 표현식과 함께 `export`를 인라인으로 사용하세요
   ```js
-  // Use this:
+  // 이렇게 사용하세요:
   export default class ClassName {
   
   }
 
-  // Instead of:
+  // 이것 대신:
   class ClassName {
 
   }
   export default ClassName
   ```
-* Place class properties in the following order:
-    * Class methods and properties (methods starting with `static`)
-    * Instance methods and properties
-* Place requires in the following order:
-    * Built in Node Modules (such as `path`)
-    * Repo level global imports (such as `modules`, `builtins`)
-    * Local Modules (using relative paths)
-* Prefer to import whole modules instead of singular functions
-    * Keep modules namespaced and organized
-    * This includes Node Modules (such as `fs`)
+* 클래스 속성을 다음 순서로 배치하세요:
+    * 클래스 메서드와 속성 (`static`으로 시작하는 메서드들)
+    * 인스턴스 메서드와 속성
+* require를 다음 순서로 배치하세요:
+    * 내장 Node 모듈 (`path` 같은)
+    * 저장소 레벨 전역 import (`modules`, `builtins` 같은)
+    * 로컬 모듈 (상대 경로 사용)
+* 개별 함수보다는 전체 모듈을 import하는 것을 선호해요
+    * 모듈을 네임스페이스로 구성해서 정리해주세요
+    * 이는 Node 모듈(`fs` 같은)도 포함해요
 ```js
-const fs = require("fs"); // Use this
-const {readFile, writeFile} = require("fs"); // Avoid this
+const fs = require("fs"); // 이렇게 사용하세요
+const {readFile, writeFile} = require("fs"); // 이건 피해주세요
 
-import Utilities from "./utilities"; // Use this
-import {deepclone, isEmpty} from "./utilties"; // Avoid this
+import Utilities from "./utilities"; // 이렇게 사용하세요
+import {deepclone, isEmpty} from "./utilities"; // 이건 피해주세요 (오타도 수정!)
 ```

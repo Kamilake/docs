@@ -1,15 +1,15 @@
 ---
 order: 0
-description: Internal module reference.
+description: 내부 모듈 참조 가이드
 ---
 
-# Internal Modules
+# 내부 모듈들 (Internal Modules)
 
 > [!IMPORTANT]
-> Keep in mind that Discord's internals are not officially documented and are subject to change at any time. You can check the timestamp at the bottom of each page to see when the reference was last updated.
+> Discord의 내부 구조는 공식적으로 문서화되지 않았으며 언제든지 변경될 수 있다는 점을 기억해 주세요! 각 페이지 하단의 타임스탬프를 확인하여 참조가 마지막으로 업데이트된 시점을 확인할 수 있어요. 🕐
 
-Discord uses Webpack as their bundler and through [`BdApi.Webpack`](/api/webpack.md) we are able to grab a number of their internal modules for our own use. There are several commonly known types of modules and this section of the documentation serves as a living reference of some of these modules.
+Discord는 번들러로 Webpack을 사용하고 있고, [`BdApi.Webpack`](/api/webpack.md)을 통해 우리는 자체 사용을 위해 내부 모듈들을 가져올 수 있어요! 정말 흥미롭지 않나요? 🤔 일반적으로 알려진 여러 유형의 모듈들이 있으며, 문서의 이 섹션은 이러한 모듈들 중 일부에 대한 살아있는 참조 역할을 한답니다!
 
-## Data Stores
+## 데이터 스토어들 (Data Stores)
 
-This common type of modules holds data that is used throughout the entire app by Discord. This includes local caches of information about users, guilds, roles, or anything else that may otherwise need to be pulled from the server. Having access to these can greatly enhance any plugin you may be working on. You can take a look at a mostly comprehensive list on the next page, or you can check out the [plugin guide](/plugins/advanced/webpack.md) for a walkthrough and tips on reverse engineering individual methods.
+이 일반적인 유형의 모듈들은 Discord가 전체 앱에서 사용하는 데이터를 보관해요. 여기에는 사용자, 길드, 역할 또는 서버에서 가져와야 할 기타 모든 정보에 대한 로컬 캐시가 포함되어 있답니다! 이것들에 액세스할 수 있다면 작업 중인 플러그인을 크게 향상시킬 수 있어요! 다음 페이지에서 대부분 포괄적인 목록을 확인하거나, 개별 메서드 역공학에 대한 연습과 팁을 위해 [플러그인 가이드](/plugins/advanced/webpack.md)를 확인해 보세요! 정말 재미있을 거예요! 🚀💡

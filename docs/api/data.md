@@ -1,43 +1,44 @@
-# Data
+# Data (데이터 관리) 💾
 
-`Data` is a simple utility class for the management of plugin data. An instance is available on [BdApi](./bdapi).
+`Data`는 플러그인 데이터 관리를 위한 간단하고 실용적인 유틸리티 클래스예요! [BdApi](./bdapi)에서 인스턴스를 사용할 수 있답니다.
 
-## Properties
+## 속성 (Properties)
 
 
 
-## Methods
+## 메서드 (Methods)
 
-### delete
-Deletes a piece of stored data. This is different than saving `null` or `undefined`.
+### delete 🗑️
+저장된 데이터의 한 부분을 삭제해줘요. `null`이나 `undefined`를 저장하는 것과는 다른 동작이에요!
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-pluginName|string|Name of the plugin deleting data
-key|string|Which piece of data to delete.
+pluginName|string|데이터를 삭제하는 플러그인의 이름이에요
+key|string|삭제할 데이터의 키예요
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
-### load
-Loads previously stored data.
+### load 📁
+이전에 저장된 데이터를 불러와줘요.
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-pluginName|string|Name of the plugin loading data
-key|string|Which piece of data to load
+pluginName|string|데이터를 불러오는 플러그인의 이름이에요
+key|string|불러올 데이터의 키예요
 
-**Returns:** `any` - The stored data
+**반환값:** `any` - 저장된 데이터
+
 ___
 
-### save
-Saves JSON-serializable data.
+### save 💾
+JSON으로 직렬화 가능한 데이터를 저장해줘요.
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-pluginName|string|Name of the plugin saving data
-key|string|Which piece of data to store
-data|any|The data to be saved
+pluginName|string|데이터를 저장하는 플러그인의 이름이에요
+key|string|저장할 데이터의 키예요
+data|any|저장할 데이터예요
 
-**Returns:** `void`
+**반환값:** `void`
 ___

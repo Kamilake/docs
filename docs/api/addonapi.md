@@ -1,81 +1,80 @@
-# AddonAPI
+# AddonAPI (애드온 API) 🎨
 
-`AddonAPI` is a utility class for working with plugins and themes. Instances are accessible through the [BdApi](./bdapi).
+`AddonAPI`는 플러그인과 테마를 다루는 정말 유용한 유틸리티 클래스예요! [BdApi](./bdapi)를 통해 인스턴스에 접근할 수 있답니다. 
 
-## Properties
+## 속성 (Properties)
 
 ### folder
-The path to the addon folder.
+애드온 폴더의 경로에요. 여기에 여러분의 플러그인들이 살고 있답니다! 🏠
 
-**Type:** `string`
+**타입:** `string`
 ___
 
 
-## Methods
+## 메서드 (Methods)
 
 ### disable
-Disables the given addon.
+주어진 애드온을 비활성화해요. 잠시 쉬게 해주는 거죠! 😴
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-idOrFile|string|Addon ID or filename
+idOrFile|string|애드온 ID 또는 파일명
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
 ### enable
-Enables the given addon.
+주어진 애드온을 활성화해요. 다시 깨워주는 거예요! ⚡
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-idOrFile|string|Addon ID or filename
+idOrFile|string|애드온 ID 또는 파일명
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
 ### get
-Gets a particular addon.
+특정 애드온을 가져와요. 원하는 애드온을 찾아주는 마법이에요! ✨
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-idOrFile|string|Addon ID or filename
+idOrFile|string|애드온 ID 또는 파일명
 
-**Returns:** `object` - Addon instance
+**반환값:** `object` - 애드온 인스턴스
 ___
 
 ### getAll
-Gets all addons of this type.
+이 타입의 모든 애드온들을 가져와요. 한 번에 다 보고 싶을 때 사용하세요! 📦
 
-
-**Returns:** `Array.<object>` - Array of all addon instances
+**반환값:** `Array.<object>` - 모든 애드온 인스턴스의 배열
 ___
 
 ### isEnabled
-Determines if a particular addon is enabled.
+특정 애드온이 활성화되어 있는지 확인해요. 살아있는지 체크하는 거죠! 🔍
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-idOrFile|string|Addon ID or filename
+idOrFile|string|애드온 ID 또는 파일명
 
-**Returns:** `boolean`
+**반환값:** `boolean`
 ___
 
 ### reload
-Reloads if a particular addon is enabled.
+특정 애드온이 활성화되어 있다면 다시 로드해요. 새로운 기분으로! 🔄
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-idOrFile|string|Addon ID or filename
+idOrFile|string|애드온 ID 또는 파일명
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
 ### toggle
-Toggles if a particular addon is enabled.
+특정 애드온의 활성화 상태를 토글해요. 켜졌다 꺼졌다 하는 스위치 같은 거예요! 🔀
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-idOrFile|string|Addon ID or filename
+idOrFile|string|애드온 ID 또는 파일명
 
-**Returns:** `void`
+**반환값:** `void`
 ___

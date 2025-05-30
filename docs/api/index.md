@@ -2,12 +2,12 @@
 order: 0
 ---
 
-# Overview
+# 개요 (Overview)
 
-If you're looking for a tutorial or a guide on how to actually make plugins, you should take a look at our [plugin guide](/plugins/) instead! Otherwise, if you're just looking for a quick reference point for the API, take a look at [BdApi](./bdapi.md) for a good starting point.
+플러그인을 실제로 만드는 방법에 대한 튜토리얼이나 가이드를 찾고 있다면, [플러그인 가이드](/plugins/)를 대신 확인해보세요! 🎯 그렇지 않고 API에 대한 빠른 참조 포인트만 찾고 있다면, 좋은 시작점으로 [BdApi](./bdapi.md)를 살펴보세요!
 
-## Structure
+## 구조 (Structure)
 
-`BdApi` is a global found on the `window` object and is readily accessible to all plugin at all times. It is generally structured into namespaces that group similar utility functions together into logical units.
+`BdApi`는 `window` 객체에서 찾을 수 있는 전역 변수이고, 모든 플러그인에서 언제든지 쉽게 접근할 수 있어요! 😊 일반적으로 비슷한 유틸리티 함수들을 논리적인 단위로 그룹화한 네임스페이스들로 구조화되어 있어요.
 
-The list on the left has all the namespaces currently available as well as more information on `BdApi`.
+왼쪽 목록에는 현재 사용 가능한 모든 네임스페이스들과 `BdApi`에 대한 더 많은 정보가 있어요! 정말 유용한 도구들이 가득해요! ✨

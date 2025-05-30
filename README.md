@@ -16,7 +16,7 @@
 [docs-link]: https://docs.betterdiscord.app
 
 
-# BetterDiscord Docs
+# BetterDiscord 문서 📚
 
 [![CI Status][build-badge]][build-link] [![GitHub Releases][downloads-badge]][downloads-link] [![Discord][discord-badge]][discord-link] [![Website][website-badge]][website-link] [![Docs][docs-badge]][docs-link]
 
@@ -25,44 +25,43 @@
 </div>
 
 
-# About
+# 소개 🎯
 
-The docs website is built using [VitePress](https://vitepress.dev/), a modern static website generator purpose built for documentation. The documentation itself is stored in markdown format using as little Vue components as possible in order to maximize the plaintext readability both for local viewing in an IDE as well as those that want to read the docs through GitHub rather than the website.
+이 문서 웹사이트는 [VitePress](https://vitepress.dev/)를 사용해서 만들어졌어요! VitePress는 문서를 위해 특별히 설계된 현대적인 정적 웹사이트 생성기랍니다. 문서 자체는 마크다운 형식으로 저장되어 있고, 가능한 한 적은 Vue 컴포넌트만 사용해서 일반 텍스트로도 읽기 쉽게 만들었어요. IDE에서 로컬로 보기에도 좋고, 웹사이트 대신 GitHub에서 문서를 읽고 싶은 분들에게도 편리할 거예요! 😊
 
-# Docs Structure
+# 문서 구조 🗂️
 
-This is the current documentation structure for the markdown files. It covers a wide range of topics and each entry below has several subpages with detailed information.
-
-```
-.
-├──User Guides             // Basic walkthroughs for the average end-user
-├──Developer Guides        // General set of guides useful for all developers
-|   ├──Plugins             // Walkthroughs and information for plugin developers
-|   └──Themes              // Informational guide to create themes for BetterDiscord
-└──API Reference           // Non-walkthrough API reference
-    ├──BetterDiscord API   // Detailed reference of everything available on BdApi
-    └──Discord             // Advanced info on Discord's internals (subject to change)
-```
-
-The markdown pages under BetterDiscord API (aside from the overview/index) are automatically generated via a pair of scripts to extract the JSDoc from BetterDiscord and process it into markdown.
-
-
-# Project Structure
+현재 마크다운 파일들의 문서 구조예요. 다양한 주제를 다루고 있고, 아래 각 항목마다 자세한 정보가 담긴 여러 하위 페이지들이 있답니다.
 
 ```
 .
-├──.vitepress     // VitePress folder for config and customization
-|  └──theme       // Extension of the default theme
-├──docs           // All the markdown documentation
-|   ├──public     // Static assets available at url root
-|   └──<others>   // See the structure above
-└──scripts        // Helper scripts to generate the api reference
+├──사용자 가이드              // 일반 사용자를 위한 기본 가이드
+├──개발자 가이드              // 모든 개발자에게 유용한 일반적인 가이드 모음
+|   ├──플러그인              // 플러그인 개발자를 위한 가이드와 정보
+|   └──테마                 // BetterDiscord용 테마 제작을 위한 정보 가이드
+└──API 레퍼런스             // 가이드가 아닌 API 참고 자료
+    ├──BetterDiscord API   // BdApi에서 사용 가능한 모든 것들의 상세 레퍼런스
+    └──Discord             // Discord 내부 구조에 대한 고급 정보 (변경될 수 있음)
+```
+
+BetterDiscord API 아래의 마크다운 페이지들(개요/인덱스 제외)은 BetterDiscord에서 JSDoc을 추출해서 마크다운으로 변환하는 스크립트 쌍을 통해 자동으로 생성됩니다. 정말 신기하죠! 🤖
+
+# 프로젝트 구조 🏗️
+
+```
+.
+├──.vitepress     // VitePress 설정과 커스터마이징을 위한 폴더
+|  └──theme       // 기본 테마의 확장
+├──docs           // 모든 마크다운 문서들
+|   ├──public     // URL 루트에서 사용 가능한 정적 자원들
+|   └──<기타>      // 위의 구조 참고
+└──scripts        // API 레퍼런스 생성을 위한 헬퍼 스크립트들
 
 ```
 
-# Contributors
+# 기여자들 👥
 
-For information on contributing to this project, please see [CONTRIBUTING.md](/CONTRIBUTING.md).
+이 프로젝트에 기여하고 싶으시다면 [CONTRIBUTING.md](/CONTRIBUTING.md)를 확인해보세요! 여러분의 참여를 기다리고 있어요! 🎉
 
 [![Contributors][contributors-image]][contributors-link]
 

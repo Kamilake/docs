@@ -1,59 +1,59 @@
-# Components
+# Components (컴포넌트들) ⚛️
 
-`Components` is a namespace holding a series of React components. It is available under [BdApi](./bdapi).
+`Components`는 React 컴포넌트들의 모음이 담긴 네임스페이스예요! [BdApi](./bdapi)에서 사용할 수 있답니다.
 
 > [!NOTE]
-> This documentation is in progress and currently just serves as a reference list with no additional info.
+> 이 문서는 아직 작업 중이에요! 현재는 추가 정보 없이 참조 목록으로만 제공하고 있어요. 조금만 기다려주세요! 🚧
 
-## Properties
+## 속성 (Properties)
 
 ### Button
-
+버튼 컴포넌트예요! 클릭하고 싶게 만드는 마법의 버튼이죠 ✨
 
 ### ColorInput
-
+색상 입력 컴포넌트예요! 무지개처럼 예쁜 색깔들을 선택할 수 있어요 🌈
 
 ### DropdownInput
-
+드롭다운 입력 컴포넌트예요! 옵션들이 떨어지는 재미있는 메뉴랍니다 📋
 
 ### ErrorBoundary
-
+에러 경계 컴포넌트예요! 에러가 퍼지지 않게 막아주는 방패 같은 존재죠 🛡️
 
 ### Flex
-
+플렉스 컴포넌트예요! 유연하게 배치해주는 똑똑한 친구랍니다 🤸
 
 ### KeybindInput
-
+키바인드 입력 컴포넌트예요! 단축키를 설정할 때 사용해요 ⌨️
 
 ### NumberInput
-
+숫자 입력 컴포넌트예요! 숫자만 받아주는 까다로운(?) 친구예요 🔢
 
 ### RadioInput
-
+라디오 입력 컴포넌트예요! 하나만 선택할 수 있는 선택지들이에요 📻
 
 ### SearchInput
-
+검색 입력 컴포넌트예요! 원하는 걸 찾아주는 탐정 같은 존재죠 🔍
 
 ### SettingGroup
-
+설정 그룹 컴포넌트예요! 관련된 설정들을 모아놓은 가족 같은 거예요 👨‍👩‍👧‍👦
 
 ### SettingItem
-
+설정 아이템 컴포넌트예요! 각각의 설정 옵션을 예쁘게 보여줘요 ⚙️
 
 ### SliderInput
-
+슬라이더 입력 컴포넌트예요! 슬라이드해서 값을 조절하는 재미있는 친구랍니다 🎚️
 
 ### SwitchInput
-
+스위치 입력 컴포넌트예요! 켜고 끄는 간단한 토글 스위치예요 🔘
 
 ### Text
-
+텍스트 컴포넌트예요! 글자를 예쁘게 보여주는 기본적인 친구죠 📝
 
 ### TextInput
-
+텍스트 입력 컴포넌트예요! 글자를 입력받는 착한 친구예요 ✏️
 
 ### Tooltip
+툴팁 컴포넌트예요! 마우스를 올리면 도움말을 보여주는 친절한 가이드랍니다 💭
 
-
-## Methods
+## 메서드 (Methods)
 

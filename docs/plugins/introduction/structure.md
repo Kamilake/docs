@@ -1,38 +1,38 @@
 ---
 order: 4
-description: The requirements and format of a plugin.
+description: 플러그인의 요구사항과 형식에 대해 알아보아요.
 ---
 
-# Plugin Structure
+# 플러그인 구조
 
-::: tip
+::: tip 💡
 
-This page only goes over the body of a plugin. Make sure you have read up on the [addon system](../../developers/addons.md) first.
+이 페이지는 플러그인의 본문만 다뤄요. 먼저 [애드온 시스템(addon system)](../../developers/addons.md)에 대해 읽어보시는 것을 권장해요!
 
 :::
 
-## Requirements
+## 요구사항 ✅
 
- - BetterDiscord plugins are limited to a single file.
- - BetterDiscord plugins (files) must be named in the form `*.plugin.js`.
- - BetterDiscord plugins require a special header known as the meta.
- - BetterDiscord plugins must implement both a `start()` and `stop()` function.
- - BetterDiscord plugins must either be a class or a function that returns the required object.
- - BetterDiscord plugins must be exported via `module.exports`.
+ - BetterDiscord 플러그인은 하나의 파일로 제한되어요.
+ - BetterDiscord 플러그인(파일)은 `*.plugin.js` 형식으로 이름을 지어야 해요.
+ - BetterDiscord 플러그인에는 메타(meta)라고 하는 특별한 헤더가 필요해요.
+ - BetterDiscord 플러그인은 `start()`와 `stop()` 함수를 모두 구현해야 해요.
+ - BetterDiscord 플러그인은 클래스이거나 필요한 객체를 반환하는 함수여야 해요.
+ - BetterDiscord 플러그인은 `module.exports`를 통해 내보내져야 해요.
 
-## Details
+## 자세한 내용 🔍
 
-BetterDiscord plugins must be in vanilla JavaScript and be contained in a single file in order to be loaded. That means if you want to use something like JSX, or TypeScript it must be transpiled. Similarly if you want to break out your code into multiple files it must be bundled. Both of these topics are covered later in the documentation. In order to cut back on redundancy, your [addon meta](../../developers/addons.md) is provided as a plain object to your main function or constructor. You will see examples of this throughout the documentation.
+BetterDiscord 플러그인은 로드되기 위해 바닐라 JavaScript로 작성되고 하나의 파일에 포함되어야 해요. 즉, JSX나 TypeScript 같은 것을 사용하고 싶다면 트랜스파일해야 한다는 뜻이에요. 마찬가지로 코드를 여러 파일로 나누고 싶다면 번들링해야 해요. 이 두 주제는 문서의 뒷부분에서 다뤄집니다. 중복을 줄이기 위해, 여러분의 [애드온 메타](../../developers/addons.md)는 메인 함수나 생성자에 일반 객체로 제공되어요. 문서 전체에서 이런 예시들을 보게 될 거예요.
 
-Plugin files must be named in the format `*.plugin.js` where `*` is representative of any string. Usually this matches the name of the plugin without any spaces or special characters, however that is not a requirement.
+플러그인 파일은 `*.plugin.js` 형식으로 이름을 지어야 해요. 여기서 `*`는 임의의 문자열을 나타내요. 보통 이것은 공백이나 특수 문자 없이 플러그인 이름과 일치하지만, 이것이 필수 요구사항은 아니에요.
 
-Plugin files are split into two main pieces, the meta and the plugin code. If either of these are missing the plugin will not load.
+플러그인 파일은 두 가지 주요 부분으로 나뉘어요: 메타와 플러그인 코드. 이 중 하나라도 누락되면 플러그인이 로드되지 않아요.
 
 ### JavaScript
 
-The basics of the plugin code are simple. The plugin must have both a `start()` and `stop()` function which are called on enable and disable respectively. The plugin must also get those functions back to BetterDiscord using `module.exports`.
+플러그인 코드의 기본은 간단해요. 플러그인은 활성화와 비활성화 시 각각 호출되는 `start()`와 `stop()` 함수를 모두 가져야 해요. 또한 `module.exports`를 사용하여 이 함수들을 BetterDiscord에 반환해야 해요.
 
-The simplest and most direct way is to do it is to return an object literal:
+가장 간단하고 직접적인 방법은 객체 리터럴을 반환하는 것이에요:
 ```js
 module.exports = () => ({
    start() {
@@ -44,7 +44,7 @@ module.exports = () => ({
 });
 ```
 
-But that of course is not the only way to do it. Many people like the syntactic sugar and extensibility of classes
+하지만 물론 이것이 유일한 방법은 아니에요. 많은 사람들이 클래스의 문법적 설탕과 확장성을 좋아해요 😊
 
 ```js
 module.exports = class {
@@ -57,7 +57,7 @@ module.exports = class {
 };
 ```
 
-while others prefer a more modular functional style.
+반면 더 모듈화된 함수형 스타일을 선호하는 사람들도 있어요.
 
 ```js
 const start = () => {};
@@ -68,7 +68,7 @@ module.exports.start = start;
 module.exports.stop = stop;
 ```
 
-Of course there's those that prefer to wrap themselves up for safekeeping.
+물론 안전을 위해 자신을 감싸는 것을 선호하는 사람들도 있어요.
 
 ```js
 module.exports = () => {
@@ -79,28 +79,28 @@ module.exports = () => {
 };
 ```
 
-But whatever your preference, just pass those functions on up!
+하지만 여러분의 선호도가 무엇이든, 그 함수들을 위로 전달해주세요!
 
-All of those examples are valid ways of getting those functions back to BetterDisord. The main idea is that when BetterDiscord calls `require("./yourplugin.plugin.js")`, the `exports` needs to <u>either</u>:
-1. have both a `start()` and `stop()` prototype function.
-2. _be_ a function that returns an object containing both functions.
+이 모든 예시들은 이 함수들을 BetterDiscord에 반환하는 유효한 방법들이에요. 핵심 아이디어는 BetterDiscord가 `require("./yourplugin.plugin.js")`를 호출할 때, `exports`가 <u>다음 중 하나여야</u> 한다는 것이에요:
+1. `start()`와 `stop()` 프로토타입 함수를 모두 가지고 있거나
+2. 두 함수를 모두 포함하는 객체를 반환하는 함수_이거나_
 
-It may seem roundabout to do it this way, but this is what allows for developers to make use of uninstantiated classes like the example above.
+이렇게 하는 것이 돌아가는 것처럼 보일 수 있지만, 이것이 개발자들이 위 예시와 같은 인스턴스화되지 않은 클래스를 사용할 수 있게 해주는 방법이에요.
 
-If you feel you have a solid grasp of how this works, take a look at the [Guidelines](./guidelines) before moving on to the [Basics](../basics/creating-a-plugin.md) guide.
+이것이 어떻게 작동하는지 확실히 이해했다고 생각되면, [기초](../basics/creating-a-plugin.md) 가이드로 넘어가기 전에 [가이드라인](./guidelines)을 살펴보세요.
 
-#### Optional Functions
+#### 선택적 함수들 🎯
 
-These are functions that plugins _can_ make use of but are not required at all. These are all supplied to BetterDiscord in the same place you provide `start` and `stop`
+이것들은 플러그인이 사용_할 수 있지만_ 전혀 필수가 아닌 함수들이에요. 이들은 모두 `start`와 `stop`을 제공하는 같은 장소에서 BetterDiscord에 제공되어요.
 
 ##### getSettingsPanel
 
-This function allows your plugins to have a settings panel displayed through BetterDiscord. The expected return type is either an `HTMLElement` or a React element. Returning a `string` representing the HTML is deprecated.
+이 함수는 여러분의 플러그인이 BetterDiscord를 통해 표시되는 설정 패널을 가질 수 있게 해줘요. 예상되는 반환 타입은 `HTMLElement` 또는 React 엘리먼트예요. HTML을 나타내는 `string`을 반환하는 것은 더 이상 권장되지 않아요.
 
 ##### observer
 
-This function is called on every mutation of the `document`. If you're unfamiliar with that terminology, take a look at [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/observe).
+이 함수는 `document`의 모든 변이(mutation)에서 호출되어요. 이 용어가 익숙하지 않다면, [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/observe)을 살펴보세요.
 
 ##### onSwitch
 
-This function is called every time the view is "switched". A better way to look at this is every time the user navigates such as changing the channel or server.
+이 함수는 뷰가 "전환"될 때마다 호출되어요. 이를 더 잘 이해하는 방법은 사용자가 채널이나 서버를 변경하는 등의 탐색을 할 때마다라고 생각하는 거예요.

@@ -1,152 +1,144 @@
 ---
 order: 4
-description: All about UI.
+description: UI에 대한 모든 것을 알아봅시다.
 ---
 
-# UI Components
+# UI 컴포넌트
 
-## Terminology
+## 용어 정리
 
-All of the following terms are important to know, they'll be used often both by Discord's internals and by fellow developers as you start engage with the community. The first three are generally used terms for web development. After that, they are either Discord-specific or BetterDiscord-specific.
+다음 용어들을 아는 게 중요해요! Discord 내부와 동료 개발자들이 커뮤니티에서 자주 사용하는 용어들이거든요. 처음 세 개는 일반적으로 웹 개발에서 사용되는 용어들이에요. 그 다음부터는 Discord 전용이거나 BetterDiscord 전용 용어들이에요! 😊
 
-### Modal
+### 모달 (Modal)
 
-Modals are elements that overlay the main screen in the center, usually darkening the rest of the page behind them. These are often used to get user input or display important information.
+모달은 메인 화면 중앙에 오버레이되는 요소들로, 보통 뒤의 페이지를 어둡게 만들어요. 사용자 입력을 받거나 중요한 정보를 표시할 때 자주 사용돼요!
 
+::: details 예제
 
-::: details Example
-
-![Modal Example](./img/ui/modal.png)
-
-:::
-
-### Popout
-
-Popouts are similar to modals in that they overlay the main screen, however they almost never darken the page behind them, nor are they front-and-center. These usually stick near the user's mouse location and appear after a user input. They are great for displaying additional information to the user about something specific.
-
-
-::: details Example
-
-![Popout Example](./img/ui/popout.png)
+![모달 예제](./img/ui/modal.png)
 
 :::
 
-### Tooltip
+### 팝아웃 (Popout)
 
-Tooltips are yet another overlay element. These are very similar to popouts but much much smaller and usually point to a specific element to indicate that it is giving additional information about it. This is used to make clean buttons or clarify text.
+팝아웃은 메인 화면에 오버레이된다는 점에서 모달과 비슷하지만, 뒤의 페이지를 어둡게 하는 경우는 거의 없고 화면 정중앙에 오지도 않아요. 보통 사용자의 마우스 위치 근처에 붙어있고 사용자 입력 후에 나타나요. 특정한 것에 대한 추가 정보를 사용자에게 보여주는 데 좋아요! 🎯
 
+::: details 예제
 
-::: details Example
-
-![Tooltip Example](./img/ui/tooltip.png)
-
-:::
-
-### Notice
-
-Notices are a Discord-specific term for a banner-like element that appears at the top of the screen. In Discord this is most often used to either give persistent information or passively wait for user interaction.
-
-
-::: details Example
-
-![Notice Example](./img/ui/notice.png)
+![팝아웃 예제](./img/ui/popout.png)
 
 :::
 
-### Toast
+### 툴팁 (Tooltip)
 
-Toasts are a BetterDiscord-specific term for a small tooltip-like popup that appears at the bottom of the screen. This is borrowed from the Android ecosystem and was modeled after it. Toasts are used to indicate information to the user about either interaction or background tasks.
+툴팁은 또 다른 오버레이 요소예요! 팝아웃과 매우 비슷하지만 훨씬 훨씬 작고, 보통 특정 요소를 가리켜서 그것에 대한 추가 정보를 주고 있다는 걸 나타내요. 깔끔한 버튼을 만들거나 텍스트를 명확히 하는 데 사용돼요! ✨
 
+::: details 예제
 
-::: details Example
-
-![Toast Example](./img/ui/toast.png)
+![툴팁 예제](./img/ui/tooltip.png)
 
 :::
 
-## BdApi Helpers
+### 노티스 (Notice)
+
+노티스는 Discord 전용 용어로, 화면 상단에 나타나는 배너 같은 요소예요. Discord에서는 지속적인 정보를 주거나 사용자 상호작용을 수동적으로 기다릴 때 가장 자주 사용해요!
+
+::: details 예제
+
+![노티스 예제](./img/ui/notice.png)
+
+:::
+
+### 토스트 (Toast)
+
+토스트는 BetterDiscord 전용 용어로, 화면 하단에 나타나는 작은 툴팁 같은 팝업이에요! 이건 Android 생태계에서 빌려온 거고 그걸 모델로 만들어졌어요. 토스트는 상호작용이나 백그라운드 작업에 대한 정보를 사용자에게 알려주는 데 사용돼요! 📱
+
+::: details 예제
+
+![토스트 예제](./img/ui/toast.png)
+
+:::
+
+## BdApi 도우미들
 
 > [!NOTE]
-> This section is still being updated for the BetterDiscord v1.11.0 update!
+> 이 섹션은 BetterDiscord v1.11.0 업데이트를 위해 아직 업데이트 중이에요!
 
-There are some utility functions from `BdApi` that help you build and display certain UI elements. Using them instead of building your own saves you code and helps ensure a consistent UI/UX for the end user across plugins. While they may work for a large range of cases, for advanced UIs (and ones not handled in `BdApi`) you will need to build your own.
+`BdApi`에는 특정 UI 요소들을 만들고 표시하는 데 도움이 되는 유틸리티 함수들이 있어요! 직접 만드는 대신 이걸 사용하면 코드를 절약할 수 있고 플러그인 간에 일관된 UI/UX를 보장하는 데 도움이 돼요. 많은 경우에 작동하지만, 고급 UI나 (`BdApi`에서 처리되지 않는 것들)의 경우에는 직접 만들어야 해요! 🛠️
 
 ### alert
 
-The `BdApi.UI.alert()` method allows you to create and display a simple yet extensible informational modal. Its signature is `alert(title, content)`.
+`BdApi.UI.alert()` 메서드는 간단하면서도 확장 가능한 정보 모달을 만들고 표시할 수 있게 해줘요! 시그니처는 `alert(title, content)`예요.
 
-The most straightforward way to use it, is to just use strings.
+가장 직관적인 사용법은 그냥 문자열을 사용하는 거예요!
 
 
 ```js
-BdApi.UI.alert("Hello World", "This is just a basic informational modal!");
+BdApi.UI.alert("안녕하세요 세상", "이건 그냥 기본적인 정보 모달이에요!");
 ```
-::: details Result
-![Basic Alert](./img/ui/alert_basic.png)
+::: details 결과
+![기본 알림](./img/ui/alert_basic.png)
 :::
 
-
-You can also pass in a react element for `content` but <u>not for `title`</u>. However, this means you are on your own for functionality and styling. In the last example we saw that the `content` text was colored and themed properly. But let's try just wrapping a string in a react element.
+`content`에는 React 요소를 전달할 수도 있지만 <u>`title`에는 안 돼요</u>. 하지만 이건 기능과 스타일링을 스스로 해야 한다는 뜻이에요! 마지막 예제에서 `content` 텍스트가 색칠되고 테마가 적절히 적용된 걸 봤어요. 하지만 문자열을 React 요소로 감싸보면 어떻게 될까요?
 
 
 ```jsx
-BdApi.UI.alert("Hello World", <div>This is just a basic informational modal!</div>);
+BdApi.UI.alert("안녕하세요 세상", <div>이건 그냥 기본적인 정보 모달이에요!</div>);
 ```
 
-::: details Result
-![React Alert](./img/ui/alert_react.png)
+::: details 결과
+![React 알림](./img/ui/alert_react.png)
 :::
 
-And since we are able to use react here for `content`, it also allows us to pass in a whole tree of elements or custom components. This allows for some very interesting alert possibilities.
+그리고 `content`에 React를 사용할 수 있으니까, 전체 요소 트리나 커스텀 컴포넌트를 전달할 수도 있어요! 이렇게 하면 정말 흥미로운 알림 가능성들이 열려요! 🚀
 
 
 ```jsx
 function MySearchInput(props) {
     return <input
                 type="text"
-                placeholder={props.placeholder || "Search..."}
+                placeholder={props.placeholder || "검색..."}
                 onChange={props?.onChange}
             />;
 }
 
 BdApi.UI.alert(
-    "Input Test",
+    "입력 테스트",
     <MySearchInput
-        placeholder="Testing..."
+        placeholder="테스트 중..."
         onChange={event => console.log(event)}
     />
 );
 ```
 
-::: details Result
-![React Input](./img/ui/alert_input.png)
+::: details 결과
+![React 입력](./img/ui/alert_input.png)
 :::
 
-::: details Console
-![React Console](./img/ui/alert_console.png)
+::: details 콘솔
+![React 콘솔](./img/ui/alert_console.png)
 :::
 
-Important to note for later that `alert` returns a unique modal ID used internally by Discord. We won't be going over its usage here--it's safe to ignore--but may be covered by advanced guides.
-
+나중을 위해 중요한 건, `alert`가 Discord에서 내부적으로 사용되는 고유한 모달 ID를 반환한다는 거예요. 여기서는 사용법을 다루지 않을 거고--무시해도 안전해요--하지만 고급 가이드에서 다룰 수도 있어요!
 
 ### buildSettingItem & buildSettingsPanel
 
-This are covered in the [previous guide](./settings.md) in the section going over how to build a settings menu!
-
+이건 설정 메뉴를 만드는 방법을 다룬 [이전 가이드](./settings.md)에서 다뤘어요!
 
 ### createTooltip
 
-If you're not using React, this little utility can come in handy. If you give it an HTML element to follow, a label, and an optional set of options, this will generate a return a nifty little tooltip.
+React를 사용하지 않는다면, 이 작은 유틸리티가 유용할 수 있어요! 따라다닐 HTML 요소, 라벨, 그리고 선택적인 옵션 세트를 주면, 멋진 작은 툴팁을 생성해서 반환해줘요! 💫
 
 ```js
-// This tooltip will automatically show/hide as the user hovers myElement
-const tooltip = BdApi.UI.createTooltip(myElement, "My label", {side: "bottom"});
+// 이 툴팁은 사용자가 myElement에 호버할 때 자동으로 보이거나 숨겨져요
+const tooltip = BdApi.UI.createTooltip(myElement, "내 라벨", {side: "bottom"});
 
-// But, we can also forcibly show (or hide) the tooltip to fit our needs
+// 하지만 우리의 필요에 맞게 툴팁을 강제로 보이게 (또는 숨기게) 할 수도 있어요
 tooltip.show()
 ```
 
-The default options object for `createTooltip` looks something like this:
+`createTooltip`의 기본 옵션 객체는 이렇게 생겼어요:
 ```json
 {
     "style": "primary",
@@ -156,180 +148,180 @@ The default options object for `createTooltip` looks something like this:
 }
 ```
 
-The sides available are top, right, bottom, and left.
+사용 가능한 방향은 top, right, bottom, left예요!
 
-The styles available are primary, info, success, warn, and danger.
+사용 가능한 스타일은 primary, info, success, warn, danger예요!
 
-You can also directly access the elements of the tooltip afterwards. So if you need to update the label you can do something like this:
+나중에 툴팁의 요소들에 직접 접근할 수도 있어요. 그래서 라벨을 업데이트해야 한다면 이렇게 할 수 있어요:
 
 ```js
-tooltip.labelElement.textContent = "New label";
+tooltip.labelElement.textContent = "새 라벨";
 
-// Or even fancier
-const myNewLabel = BdApi.DOM.parseHTML(`<div class="foo">New label text</div>`);
+// 또는 더 멋지게
+const myNewLabel = BdApi.DOM.parseHTML(`<div class="foo">새 라벨 텍스트</div>`);
 tooltip.labelElement.textContent = "";
 tooltip.labelElement.append(myNewLabel);
 ```
 
-The options with this tooltip are surprisingly wide, so your best bet is to play around with it in console and get a feel for it.
+이 툴팁의 옵션은 놀라울 정도로 다양해서, 콘솔에서 이것저것 시도해보고 감을 잡는 게 가장 좋아요! 🎨
 
 ### showChangelogModal
 
-When you want to show the user that you've added some cool features or fixed some nasty bugs, this function can help you show it in a clean and consistent way.
+사용자에게 멋진 기능을 추가했거나 골치 아픈 버그를 수정했다는 걸 보여주고 싶을 때, 이 함수가 깔끔하고 일관된 방식으로 보여주는 데 도움이 돼요!
+
 
 ```js
 BdApi.UI.showChangelogModal({
-    title: "My Plugin",
-    subtitle: `version ${version}`,
-    blurb: "A summary of this update",
+    title: "내 플러그인",
+    subtitle: `버전 ${version}`,
+    blurb: "이 업데이트 요약",
     changes: [
         {
-            title: "New Features",
+            title: "새로운 기능",
             type: "added",
-            blurb: "Summary of the new features",
+            blurb: "새 기능들 요약",
             items: [
-                "Added feature A!",
-                "Refactored feature B into feature C!"
+                "기능 A 추가!",
+                "기능 B를 기능 C로 리팩터링!"
             ]
         },
         {
-            title: "Bugs Eliminated",
+            title: "버그 제거",
             type: "fixed",
             items: [
-                "No more corrupt settings.",
-                "Clicking the button does stuff."
+                "더 이상 설정이 손상되지 않아요.",
+                "버튼을 클릭하면 뭔가 해요."
             ]
         }
     ]
 });
 ```
 
-You can check the [api reference](../../api/ui.md) for more details, but this little snippet shows the most important features. Notably, this changelog api can also allow you to display a banner image, a youtube video, or a direct video above all of the text. This can be useful when you need to add a showcase of new things or if you just want to have a consistent branding. There are also 4 change "types". In the snippet we see fixed and added, there are also improved and progress.
+더 자세한 내용은 [api 레퍼런스](../../api/ui.md)를 확인할 수 있지만, 이 작은 스니펫이 가장 중요한 기능들을 보여줘요! 특히, 이 변경로그 API는 모든 텍스트 위에 배너 이미지, 유튜브 동영상, 또는 직접 동영상을 표시할 수도 있어요. 새로운 것들의 쇼케이스를 추가해야 하거나 일관된 브랜딩을 원할 때 유용할 수 있어요! 변경 "타입"도 4개가 있어요. 스니펫에서는 fixed와 added를 봤는데, improved와 progress도 있어요! 📝
 
-For now, plugins will have to decide when to display the changelog modal, though it is planned to be more automated in a future BetterDiscord update. For an example of how to do this check out this [Demo Plugin](https://gist.github.com/zerebos/b13adc05f22df008ee5d0411d9d18ff0) featuring the new APIs for BetterDiscord v1.11.0.
+지금은 플러그인들이 언제 변경로그 모달을 표시할지 스스로 결정해야 하지만, 향후 BetterDiscord 업데이트에서는 더 자동화될 예정이에요! 이를 하는 방법의 예제는 BetterDiscord v1.11.0용 새 API들을 보여주는 이 [데모 플러그인](https://gist.github.com/zerebos/b13adc05f22df008ee5d0411d9d18ff0)을 확인해보세요!
 
 ### showConfirmationModal
 
-Under the covers, `alert` makes use of `showConfirmationModal`. This one is an even more extensible and useful helper function. Similar to `alert` this has a `title` and `content` parameter that accept the same types as before. It's full signature is `showConfirmationModal(title, content, options = {})`. For a full list of options check the [api reference](/api/bdapi). We'll be going over some of the more useful ones here.
+내부적으로 `alert`는 `showConfirmationModal`을 사용해요! 이건 훨씬 더 확장 가능하고 유용한 도우미 함수예요. `alert`와 비슷하게 이것도 `title`과 `content` 매개변수가 있고 앞에서와 같은 타입들을 받아요. 전체 시그니처는 `showConfirmationModal(title, content, options = {})`예요. 옵션의 전체 목록은 [api 레퍼런스](/api/bdapi)를 확인하세요! 여기서는 더 유용한 것들을 다룰 거예요. 🔧
 
 
 ```js
-BdApi.UI.showConfirmationModal("Hello World", "This is just a basic confirmation modal!");
+BdApi.UI.showConfirmationModal("안녕하세요 세상", "이건 그냥 기본적인 확인 모달이에요!");
 ```
 
-::: details Result
-![Basic Confirmation](./img/ui/confirmation_basic.png)
+::: details 결과
+![기본 확인](./img/ui/confirmation_basic.png)
 :::
 
-
-Looking at the result of this one, we can see there is an additional "cancel" button. We can change the text of both of those buttons as well as respond to either of them being clicked using the `options` in this example.
+이 결과를 보면, 추가로 "취소" 버튼이 있는 걸 볼 수 있어요! 두 버튼의 텍스트를 바꿀 수 있고, 이 예제의 `options`를 사용해서 둘 중 하나가 클릭되었을 때 반응할 수도 있어요.
 
 ```jsx
 function MySearchInput(props) {
     return <input
                 type="text"
-                placeholder={props.placeholder || "Search..."}
+                placeholder={props.placeholder || "검색..."}
                 onChange={props?.onChange}
             />;
 }
 
 BdApi.UI.showConfirmationModal(
-    "Input Test",
+    "입력 테스트",
     <MySearchInput
-        placeholder="Find..."
+        placeholder="찾기..."
         onChange={event => console.log(event)}
     />,
     {
-        confirmText: "Search",
-        cancelText: "Nevermind",
-        onConfirm: () => console.log("Pressed 'Search'"),
-        onCancel: () => console.log("Pressed 'Nevermind' or escape")
+        confirmText: "검색",
+        cancelText: "아니요",
+        onConfirm: () => console.log("'검색' 눌렀어요"),
+        onCancel: () => console.log("'아니요' 또는 escape 눌렀어요")
     }
 );
 ```
 
-::: details Result
-![Advanced Confirmation](./img/ui/confirmation_advanced.png)
+::: details 결과
+![고급 확인](./img/ui/confirmation_advanced.png)
 :::
 
-Here clicking `Search` will close the modal and call the `onConfirm` function we passed. Similarly clicking `Nevermind` will call `onCancel`. If the user exits the modal either by pressing `escape` on their keyboard or by clicking outside of the modal on the dark background, `onCancel` will also be called in this case.
+여기서 `검색`을 클릭하면 모달이 닫히고 우리가 전달한 `onConfirm` 함수가 호출돼요! 비슷하게 `아니요`를 클릭하면 `onCancel`이 호출되고요. 사용자가 키보드에서 `escape`를 누르거나 어두운 배경에서 모달 밖을 클릭해서 모달을 종료하면, 이 경우에도 `onCancel`이 호출돼요! 🎹
 
-Much like `alert` the function returns a unique modal ID.
+`alert`와 마찬가지로 이 함수도 고유한 모달 ID를 반환해요!
 
 ### showToast
 
-Since toasts are meant to be simple and straightforward messages to the user, making and showing a toast is just the same. The signature is `showNotice(content, options = {})`. But unlike with the modals, `content` can <u>only be a string</u>. And it's safe to ignore the options and still successfully show a fully styled toast. We'll go over the useful ones here, but be sure to check the api reference for a full listing of options.
+토스트는 사용자에게 간단하고 직관적인 메시지를 주기 위한 거니까, 토스트를 만들고 보여주는 것도 똑같이 간단해요! 시그니처는 `showNotice(content, options = {})`예요. 하지만 모달과는 달리, `content`는 <u>문자열만 가능해요</u>. 그리고 옵션을 무시하고도 완전히 스타일된 토스트를 성공적으로 보여줄 수 있어요! 여기서는 유용한 것들을 다룰 거지만, 옵션의 전체 목록은 api 레퍼런스를 꼭 확인해보세요. 🍞
 
 
 ```js
-BdApi.UI.showToast("This is just a basic toast!");
+BdApi.UI.showToast("이건 그냥 기본적인 토스트예요!");
 ```
 
-::: details Result
-![Basic Toast](./img/ui/toast_basic.png)
+::: details 결과
+![기본 토스트](./img/ui/toast_basic.png)
 :::
 
-The most important and frequently used option is `type`. This allows a full styling of different toasts complete with icons for different situations. This is defaulted to an empty string, resulting in the image above. The other options are shown below:
+가장 중요하고 자주 사용되는 옵션은 `type`이에요! 이렇게 하면 아이콘까지 포함해서 다양한 상황에 맞는 토스트의 완전한 스타일링이 가능해요. 기본값은 빈 문자열이라 위의 이미지처럼 나와요. 다른 옵션들은 아래에 보여드릴게요:
 
 ::: details Info
-![Info Toast](./img/ui/toast_info.png)
+![정보 토스트](./img/ui/toast_info.png)
 :::
 
 ::: details Success
-![Success Toast](./img/ui/toast_success.png)
+![성공 토스트](./img/ui/toast_success.png)
 :::
 
 ::: details Warning
-![Warning Toast](./img/ui/toast_warning.png)
+![경고 토스트](./img/ui/toast_warning.png)
 :::
 
 ::: details Error
-![Error Toast](./img/ui/toast_error.png)
+![오류 토스트](./img/ui/toast_error.png)
 :::
 
-The toasts, much like on Android, disappear after a set time. By default, this is in 3 seconds. You can change this using the `timeout` option which takes a number of milliseconds to show the toast before it disappears. This function does not return anything.
+토스트는 Android처럼 설정된 시간 후에 사라져요! 기본적으로는 3초 후예요. `timeout` 옵션을 사용해서 이걸 바꿀 수 있는데, 토스트가 사라지기 전까지 보여줄 밀리초 수를 받아요. 이 함수는 아무것도 반환하지 않아요! ⏰
 
 ### showNotice
 
-This function has the same signature as `showToast` with the except that `content` can also be an `HTMLElement`. This allows it to be a bit more customizable. However, most of the functionality you would need is included already.
+이 함수는 `content`가 `HTMLElement`도 될 수 있다는 점을 제외하고는 `showToast`와 같은 시그니처를 가져요! 이렇게 해서 좀 더 커스터마이징할 수 있어요. 하지만 필요한 기능의 대부분은 이미 포함되어 있어요!
 
 
 ```js
-BdApi.UI.showNotice("This is just a basic informational notice!");
+BdApi.UI.showNotice("이건 그냥 기본적인 정보 노티스예요!");
 ```
 
-::: details Result
-![Basic Notice](./img/ui/notice_basic.png)
+::: details 결과
+![기본 노티스](./img/ui/notice_basic.png)
 :::
 
-They can do more than just show information though, you can also add multiple buttons for the user to interact with.
+하지만 정보를 보여주는 것 이상으로, 사용자가 상호작용할 수 있는 여러 버튼도 추가할 수 있어요!
 
 
 ```js
 BdApi.UI.showNotice(
-    "This is just a basic informational notice!",
+    "이건 그냥 기본적인 정보 노티스예요!",
     {
         type: "error",
         buttons: [
             {
-                label: "Click Me!",
-                onClick: () => console.log("Clicked Me")
+                label: "나를 클릭!",
+                onClick: () => console.log("나를 클릭했어요")
             },
             {
-                label: "No Me!",
-                onClick: () => console.log("Wrong One!")
+                label: "아니 나를!",
+                onClick: () => console.log("틀렸어요!")
             }
         ]
     }
 );
 ```
 
-::: details Result
-![Advanced Notice](./img/ui/notice_advanced.png)
+::: details 결과
+![고급 노티스](./img/ui/notice_advanced.png)
 :::
 
-Notice how this time we used `type: "error"` and it became red. This has the same `type` and styling options as [showToast](#showtoast).
+이번에는 `type: "error"`를 사용해서 빨간색이 된 걸 주목해보세요! [showToast](#showtoast)와 같은 `type`과 스타일링 옵션을 가져요.
 
-Each of the buttons here act completely independently which allows for powerful combinations. Additionally, you can have the notice close after a set time using `timeout`. This is a number of milliseconds after which to close the notice. If set to 0 (the default), it won't close until closed by the user or the caller.
+여기의 각 버튼들은 완전히 독립적으로 작동해서 강력한 조합이 가능해요! 추가로, `timeout`을 사용해서 설정된 시간 후에 노티스가 닫히게 할 수도 있어요. 이건 노티스를 닫을 밀리초 수예요. 0으로 설정하면 (기본값), 사용자나 호출자가 닫을 때까지 닫히지 않아요! ⚡
 
-`showNotice` returns a function which allows the original caller to close the notice either earlier than the timeout or without user interaction. The `onClick` of the button is provided with this same function as the only argument.
+`showNotice`는 원래 호출자가 타임아웃보다 일찍 또는 사용자 상호작용 없이 노티스를 닫을 수 있게 해주는 함수를 반환해요! 버튼의 `onClick`에는 이 같은 함수가 유일한 인자로 제공돼요.

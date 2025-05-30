@@ -1,57 +1,54 @@
 ---
 order: 5
-description: Rules for all plugins.
+description: 모든 플러그인이 지켜야 할 규칙들이에요.
 ---
 
-# Guidelines
+# 가이드라인
 
-These are guidelines that all plugins are expected to abide by. Any plugin that violates these <u>will not</u> be added to the BetterDiscord website or marked as official or approved in any fashion. Existing plugins that push updates that violate these guidelines will have their updates denied.
+이것들은 모든 플러그인이 지켜야 할 가이드라인이에요. 이 규칙들을 위반하는 플러그인은 BetterDiscord 웹사이트에 추가되지 <u>않을</u> 것이며, 공식적이거나 승인된 것으로 표시되지 않을 거예요. 이 가이드라인을 위반하는 업데이트를 푸시하는 기존 플러그인들은 업데이트가 거부될 것이에요. 😤
 
-## General Guidelines
+## 일반 가이드라인 📋
 
-1. Addons must be in public GitHub repositories.
-1. Addons must not negatively affect users.
-   - e.g., ban risk, disabling security features, accessing private information
-1. Addons must not discriminate whom can use it.
-1. Addons must not collect user data without opt-in consent.
-1. Addons must not include explicit sexual material or other adult content.
-1. Addons must have English language support.
+1. 애드온은 공개 GitHub 저장소에 있어야 해요.
+1. 애드온은 사용자에게 부정적인 영향을 주면 안 돼요.
+   - 예: 밴 위험, 보안 기능 비활성화, 개인 정보 접근
+1. 애드온은 누가 사용할 수 있는지 차별하면 안 돼요.
+1. 애드온은 옵트인 동의 없이 사용자 데이터를 수집하면 안 돼요.
+1. 애드온은 노골적인 성적 자료나 기타 성인 콘텐츠를 포함하면 안 돼요.
+1. 애드온은 영어 언어 지원을 해야 해요.
 
+## 범위 🎯
+1. 플러그인은 비활성화될 때 플러그인이 만든 모든 변경사항/수정사항을 정리해야 해요.
+   - 여기에는 UI 변경, 패치, 인터벌, 타임아웃, 구독, 리스너가 포함되어요.
+1. 플러그인과 해당 라이브러리는 의도된 기능 외부에서 작동하면 안 돼요.
+   - 여기에는 관련 없는 컴포넌트 교체, 불필요한 버튼이나 배지 도입 등이 포함되지만 이에 국한되지 않아요.
+1. 플러그인은 BetterDiscord UI를 수정하면 안 돼요.
+   - 이는 일관된 UI/UX를 유지하고, 사용자 혼란을 방지하며, 오류를 방지하기 위함이에요.
+1. 플러그인은 BetterDiscord의 파일을 건드리거나 사용하면 안 돼요.
 
-## Scope
-1. Plugins must clean up all changes/modification made by the plugin when it is disabled.
-   - This includes UI changes, patches, intervals, timeouts, subscriptions, and listeners.
-1. Plugins and their corresponding libraries shall not operate outside of their intended functionality.
-   - This includes but is not limited to: swapping out unrelated components, introducing unnecessary buttons or badges.
-1. Plugins must not modify the BetterDiscord UI.
-   - This is to maintain a consistent UI/UX, prevent user confusion, and prevent errors.
-1. Plugins must not touch or use BetterDiscord's files.
+## 코드 💻
 
+1. 여러분의 플러그인 코드베이스는 주로 여러분이 만들고 작성한 것이어야 해요.
+   - 자동 생성된 플러그인(AI 또는 기타), 다른 사람의 플러그인을 커스터마이징한 버전, 또는 여러분이 아닌 다른 사람이 작성한 코드베이스를 제출할 수 없어요.
+1. 플러그인은 `module.exports`를 설정해야 해요.
+1. 플러그인은 `child_process` 노드 모듈을 사용하면 안 돼요.
+   - 기존 플러그인은 예외이지만, 새로운 플러그인은 이것을 사용할 수 없어요. 이는 부분적으로는 보안 위험 때문이고, 부분적으로는 이 모듈을 깨뜨릴 예정인 Discord 업데이트 때문이에요.
+1. 플러그인은 전역 변수, 전역 객체, 또는 기존 `prototype`들을 수정하면 안 돼요.
+1. 플러그인은 공식 API 외부의 BetterDiscord 전역에 접근하면 안 돼요.
+1. 플러그인은 공식 API 외부의 webpack 모듈에 접근하면 안 돼요.
+1. 플러그인은 하드웨어 리소스를 낭비하면 안 돼요.
+    - 예: 캐싱 없는 반복적인 webpack 검색, 불필요한 데이터를 메모리에 저장
 
-## Code
+## 보안 & 개인정보 🔒
 
-1. Your plugin's codebase must be made and written primarily by you.
-   - You may not submit an automatically-generated plugin (AI or otherwise), a customized version of someone else's plugin, or a codebase written by someone other than you.
-1. Plugins must set `module.exports`
-1. Plugins must not make use of the `child_process` node module.
-   - Existing plugins are exempt, but no new plugins shall use this. This is due in part to the security risk, and in part due to an impending Discord update that will break this module.
-1. Plugins must not modify global variables, global objects, or existing `prototype`s.
-1. Plugins must not access BetterDiscord globals ouside of the official API.
-1. Plugins must not access webpack modules outside of the official API.
-1. Plugins must not waste hardware resources.
-    - e.g., repeated webpack searching without caching, storing unnecessary data in memory.
-
-
-## Security & Privacy
-
-1. Plugins must not remove security features.
-1. Plugins must not access user tokens, emails, or passwords.
-1. Plugins must not risk a user's account.
-    - This includes but is not limited to: selfbotting, spamming API requests, using non-user APIs, bypassing nitro features, animated status, message logging.
-1. Plugins must not provide access to potentially sensitive information from other users of the platform which is not otherwise accessible.
-    - This includes but is not limited to: hidden channels, deleted messages, invisible/offline status distinction.
-1. Plugins must not use remote libraries.
-   - Necessary dependencies should be either bundled or a separate plugin.
-1. Plugins must not use closed source nor self-hosted binaries or libaries.
-1. Plugins must not be obfuscated, minified, include sourcemaps, or be otherwise deceitful.
-1. Plugins must not bypass the addon approval system by implementing their own update system.
+1. 플러그인은 보안 기능을 제거하면 안 돼요.
+1. 플러그인은 사용자 토큰, 이메일, 또는 패스워드에 접근하면 안 돼요.
+1. 플러그인은 사용자의 계정을 위험에 빠뜨리면 안 돼요.
+    - 여기에는 셀프봇팅, API 요청 스팸, 비사용자 API 사용, 니트로 기능 우회, 애니메이션 상태, 메시지 로깅 등이 포함되지만 이에 국한되지 않아요.
+1. 플러그인은 다른 방법으로는 접근할 수 없는 플랫폼의 다른 사용자들로부터 잠재적으로 민감한 정보에 대한 접근을 제공하면 안 돼요.
+    - 여기에는 숨겨진 채널, 삭제된 메시지, 보이지 않음/오프라인 상태 구분 등이 포함되지만 이에 국한되지 않아요.
+1. 플러그인은 원격 라이브러리를 사용하면 안 돼요.
+   - 필요한 의존성은 번들링되거나 별도의 플러그인이어야 해요.
+1. 플러그인은 폐쇄 소스나 자체 호스팅된 바이너리 또는 라이브러리를 사용하면 안 돼요.
+1. 플러그인은 난독화되거나, 최소화되거나, 소스맵을 포함하거나, 기타 속임수를 써서는 안 돼요.
+1. 플러그인은 자체 업데이트 시스템을 구현하여 애드온 승인 시스템을 우회하면 안 돼요.

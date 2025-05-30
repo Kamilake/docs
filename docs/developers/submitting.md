@@ -1,67 +1,65 @@
 ---
 order: 5
-description: Quick submission guide.
+description: 애드온 제출 가이드입니다!
 ---
 
-# Submitting Addons
+# 애드온 제출하기 🎉
 
-Submissions are handled through the [BetterDiscord website](https://betterdiscord.app).
+와! 드디어 여러분만의 멋진 애드온을 만드셨군요! 이제 [BetterDiscord 웹사이트](https://betterdiscord.app)를 통해 제출해보아요.
 
-## Steps
+## 제출 단계
 
-1. Go to the BetterDiscord website.
-2. Select `Connect` at the top-right of the page.
+1. BetterDiscord 웹사이트로 이동해주세요.
+2. 페이지 우측 상단의 `Connect` 버튼을 클릭하세요.
 
 ![Connect Button](./img/connect.png)
 
-3. Connect your Discord account.
-4. Go to either the `Plugins` or `Themes` page and select the button `+ Submit a XXXXX`.
+3. Discord 계정을 연결해주세요.
+4. `Plugins` 또는 `Themes` 페이지로 이동하여 `+ Submit a XXXXX` 버튼을 선택하세요.
 
 ![Submit an Addon](./img/submit.png)
 
-1. Wait for your account to be authorized.
-   - If you have no plugins or themes detected on GitHub you may be automatically declined.
-   - The verification process can take up to 2 days.
-1. When approved, you can finish the submission forms for either a plugin or theme.
-1. Wait for the submission to be approved.
+5. 계정 승인을 기다려주세요.
+   - GitHub에서 플러그인이나 테마가 감지되지 않으면 자동으로 거부될 수 있어요.
+   - 인증 과정은 최대 2일까지 걸릴 수 있답니다.
+6. 승인되면 플러그인 또는 테마 제출 양식을 완성할 수 있어요!
+7. 제출물이 승인될 때까지 기다려주세요.
 
+## 승인 과정 ⏰
 
-## Approval Process
+작은 팀으로 운영되고 있어서 리뷰에 걸리는 시간을 정확히 약속드리기는 어려워요. 보통은 한 달을 넘지 않지만, 빠르면 하루 만에도 완료될 수 있답니다!
 
-Due to our small team size, we have no guarantees for how long a review can take. Typically, they take no more than a month, but they can be as quick as a day.
+### 리뷰 과정
 
-### Review 
+1. 애드온을 제출하면 정상적으로 접수되었다는 알림을 받게 되요.
+2. 리뷰 팀에게 새로운 제출물이 있다는 알림이 갑니다.
+3. 리뷰 팀이 여러분의 코드를 꼼꼼히 검토해요.
+4. 제출물에 대한 최종 결정이 내려집니다.
 
-1. After submitting an addon, you'll get a notification that the submission was properly submitted. 
-2. The review team gets a notification that there is a new submission.
-3. Your code is reviewed by the review team.
-4. A decision is made on your submission.
+### 거부된 경우 😢
 
-### Denial
+1. 거부 사유와 함께 알림을 받게 되요.
+2. GitHub에서 리뷰 팀이 열어둔 이슈들을 확인해주세요.
+3. 필요한 수정사항을 반영하고 다시 제출해주세요!
 
-1. You'll get a notification that your submission was denied along with a reason mesage.
-2. Check your GitHub for any issues opened by the review team.
-2. Make any necessary changes and resubmit.
+### 승인된 경우 🎊
 
-### Approval
+1. 제출물이 승인되었다는 기쁜 소식을 받게 되요!
+2. 여러분의 애드온이 웹사이트에 즉시 공개됩니다.
+3. 아직 개발자 역할이 없으시다면 Discord 서버에서 개발자 역할을 부여받게 되요!
 
-1. You'll get a notification that your submission was accepted.
-2. Your submission will be immediately available on the website.
-2. If you didn't already have a developer role, you'll be given one in the Discord server.
+## 업데이트하기
 
+::: danger 주의해주세요!
 
-## Updating
-
-::: danger
-
-Due to GitHub's limitations, the site is very sensitive to your changes. If you force-push and break history, the site will not be able to keep track of the plugin. The same goes if you change your GitHub username.
+GitHub의 제한사항으로 인해 사이트가 변경사항에 매우 민감해요. Force-push로 히스토리를 깨뜨리거나 GitHub 사용자명을 변경하면 사이트에서 플러그인을 추적할 수 없게 될 수 있어요.
 
 :::
 
-### Your Addon
+### 애드온 업데이트
 
-Updating your addon on the website is pretty simple, just update your addon on GitHub. The webhook will automatically send the update to the website where it will once again go through the approval process. This is done to prevent malicious updates from making it through, whether by a compromised developer account, or by a disgruntled developer.
+웹사이트에서 애드온을 업데이트하는 건 정말 간단해요! GitHub에서 애드온을 업데이트하기만 하면 돼요. 웹훅(Webhook)이 자동으로 웹사이트에 업데이트를 전송하고, 다시 한 번 승인 과정을 거치게 됩니다. 이는 악의적인 업데이트가 통과되는 것을 방지하기 위함이에요. 개발자 계정이 해킹당하거나 화가 난 개발자의 악의적인 행동을 막기 위한 안전장치랍니다!
 
-### Your README
+### README 업데이트
 
-Your README for your plugin updates separately from your plugin and can be updated at any time by updating it in your GitHub repository. Unlike addons, this has no review system so you don't have to wait for someone to approve of it to see it update on the website.
+플러그인의 README는 플러그인과 별도로 업데이트되며, GitHub 저장소에서 언제든지 업데이트할 수 있어요. 애드온과 달리 리뷰 시스템이 없어서 승인을 기다릴 필요 없이 웹사이트에서 바로 업데이트를 확인할 수 있답니다!

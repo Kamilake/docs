@@ -1,37 +1,37 @@
 ---
 order: 3
-description: The development environment.
+description: 개발 환경에 대해 알아보아요!
 ---
 
-# Environment
+# 개발 환경 🌍
 
-No not the one burning up, but the development environment for BetterDiscord plugins. There's mainly two broad categories to look at, the environment of Discord's desktop application itself, and the environment that BetterDiscord brings to it.
+지구 환경이 아니라 BetterDiscord 플러그인을 위한 개발 환경을 알아볼 거예요! 크게 두 가지 카테고리로 나누어 살펴볼 수 있어요: Discord 데스크톱 애플리케이션 자체의 환경과 BetterDiscord가 추가로 제공하는 환경이죠.
 
-## Discord
+## Discord 환경
 
-### Desktop Application
+### 데스크톱 애플리케이션
 
-Discord Desktop is an [Electron](https://www.electronjs.org/) application which means it is _essentially_ a chromium web browser that only displays Discord. That is an oversimplification but it's a good high level understanding to have. What makes Electron more than just a browser, is that it bundles Node.js with it, giving every Electron application the ability to interact beyond the capabilities of a web browser and make use of the user's computer.
+Discord 데스크톱은 [Electron](https://www.electronjs.org/) 애플리케이션이에요. 즉, _기본적으로는_ Discord만 표시하는 크로미움 웹 브라우저라고 할 수 있답니다! 물론 이건 단순화된 설명이지만, 높은 수준에서 이해하기에는 좋은 개념이에요. Electron을 단순한 브라우저 이상으로 만드는 것은 Node.js가 함께 번들링되어 있다는 점이에요. 이를 통해 모든 Electron 애플리케이션은 웹 브라우저의 기능을 넘어서 사용자의 컴퓨터와 상호작용할 수 있게 된답니다!
 
-To get a better sense of what this does, think of the limitations of making an application in a web browser. Actions like loading and saving local files, listening to keybinds globally, and controlling the user's clipboard are just not possible in the web browser. Most of these limitations are for security reasons, but with [Node.js](https://nodejs.org/), suddenly those are all very possible.
+이게 어떤 의미인지 더 잘 이해하려면 웹 브라우저에서 애플리케이션을 만들 때의 제약사항을 생각해보세요. 로컬 파일을 불러오고 저장하기, 전역 키바인드 수신하기, 사용자의 클립보드 제어하기 같은 작업들은 웹 브라우저에서는 불가능해요. 이런 제한사항들은 대부분 보안상의 이유인데, [Node.js](https://nodejs.org/)와 함께라면 갑자기 이 모든 것들이 가능해진답니다!
 
-This also means that BetterDiscord, and the plugins via a [polyfill](../plugins/introduction/environment.md#nodejs), have access to both of these environments as well.
+이는 또한 BetterDiscord와 [폴리필(polyfill)](../plugins/introduction/environment.md#nodejs)을 통한 플러그인들도 이 두 환경 모두에 접근할 수 있다는 의미이기도 해요.
 
-### Web Application
+### 웹 애플리케이션
 
-The web application itself is made using the [React](https://reactjs.org/) UI library. This is a popular library that allows for responsive and stateful interfaces. In many cases, developers take advantage of the powerful plugins and addons for React. But  Discord chose to use their own event system complete with a custom [Flux](https://facebook.github.io/flux/) implementation.
+웹 애플리케이션 자체는 [React](https://reactjs.org/) UI 라이브러리를 사용해서 만들어졌어요. 반응형이고 상태를 가진 인터페이스를 가능하게 하는 인기 있는 라이브러리죠! 많은 경우에 개발자들은 React를 위한 강력한 플러그인과 애드온들을 활용하는데, Discord는 커스텀 [Flux](https://facebook.github.io/flux/) 구현이 포함된 자체 이벤트 시스템을 사용하기로 했어요.
 
-The actual full implementation of Discord's code is not known. It is possibly written in [TypeScript](https://www.typescriptlang.org/), very likely using modern [ES Modules](https://flaviocopes.com/es-modules/), and most definitely bundled with [Webpack](https://webpack.js.org/). The topic of Webpack will be covered later in these docs.
+Discord 코드의 실제 전체 구현은 알려져 있지 않아요. [TypeScript](https://www.typescriptlang.org/)로 작성되었을 가능성이 높고, 아마도 최신 [ES 모듈](https://flaviocopes.com/es-modules/)을 사용하며, [Webpack](https://webpack.js.org/)으로 번들링되었을 가능성이 매우 높아요. Webpack에 대한 주제는 이 문서의 뒷부분에서 다룰 예정이랍니다!
 
-::: warning
+::: warning 알아두세요!
 
-If you're not familiar with any of the mentioned libraries, now is a good time to brush up before moving on.
+언급된 라이브러리들에 익숙하지 않으시다면, 계속 진행하기 전에 미리 공부해두시는 것이 좋겠어요!
 
 :::
 
-For the curious, here are the versions of the major components as of writing (April 17th 2023).
+궁금하신 분들을 위해, 이 글을 작성하는 시점(2023년 4월 17일)의 주요 컴포넌트 버전들을 소개해드려요!
 
-|Component|Version|
+|컴포넌트|버전|
 |:--------|------:|
 |Chrome   |108.0.5359.215|
 |Electron |22.3.2|

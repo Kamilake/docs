@@ -1,22 +1,22 @@
 ---
 order: 1
-description: General developer information.
+description: 개발자를 위한 전반적인 정보입니다!
 ---
 
-# Overview
+# 개요 🌟
 
-::: tip
+::: tip 알아두세요!
 
-This section goes over general information that is useful to both plugin and theme developers alike. For more details on either one visit their respective pages.
+이 섹션은 플러그인과 테마 개발자 모두에게 유용한 일반적인 정보를 다룹니다. 더 자세한 내용은 각각의 페이지를 방문해보세요!
 
 :::
 
-Currently, BetterDiscord only supports two main types of addons: [Plugins](../plugins/) and [Themes](../themes/). They serve as the main way to personalize and control your own client. All addons are required to provide certain meta information, which you can learn more about on the [addon system](./addons.md) page.
+현재 BetterDiscord는 두 가지 주요 애드온 타입을 지원해요: [플러그인(Plugins)](../plugins/)과 [테마(Themes)](../themes/)! 이들은 여러분만의 Discord 클라이언트를 개성 있게 꾸미고 제어하는 주요한 방법이랍니다. 모든 애드온은 특정 메타 정보를 제공해야 하는데, 이에 대해서는 [애드온 시스템](./addons.md) 페이지에서 더 자세히 알아볼 수 있어요!
 
-## Plugins
+## 플러그인 🔧
 
-Plugins are a type of addon that focus on functionality by adding something new to the Discord client. This could be as simple as a button that says hello, or basic end-to-end ecryption. Plugins can also modify existing functionality in the client like altering exisiting buttons to perform different actions, or even remove functionality entirely. All of this is done using JavaScript with minimal requirements to allow for personal preference and style in programming. To read more about making them, check out the [plugin documentation](../plugins/) after finishing this section.
+플러그인은 Discord 클라이언트에 새로운 기능을 추가하는 데 초점을 맞춘 애드온이에요. 간단한 "안녕하세요" 버튼부터 기본적인 종단간 암호화까지 다양한 기능을 구현할 수 있답니다! 플러그인은 기존 기능을 수정하여 버튼의 동작을 바꾸거나, 심지어 기능을 완전히 제거할 수도 있어요. 이 모든 것은 최소한의 요구사항으로 JavaScript를 사용하여 개발자의 개인적인 선호와 프로그래밍 스타일을 존중합니다. 이 섹션을 마치신 후 [플러그인 문서](../plugins/)에서 더 자세한 제작 방법을 확인해보세요!
 
-## Themes
+## 테마 🎨
 
-Themes are exactly as they sound, a way to completely alter the look and feel of the client. Some themes might just add a background image to the client, while others try to emulate the look and feel of other programs, or even other operating systems. They do this by using pure css like a webpage as opposed to using preset names that limit the creativity of developers. To read more about making them, check out the [theme documentation](../themes/) after finishing this section.
+테마는 이름 그대로 클라이언트의 모양과 느낌을 완전히 바꾸는 방법이에요! 어떤 테마는 단순히 배경 이미지를 추가하는 정도이지만, 다른 테마들은 다른 프로그램이나 심지어 다른 운영체제의 모습과 느낌을 모방하려고 해요. 개발자의 창의성을 제한하는 미리 정의된 이름 대신 웹페이지처럼 순수한 CSS를 사용해서 이런 놀라운 결과를 만들어낸답니다! 이 섹션을 마치신 후 [테마 문서](../themes/)에서 더 자세한 제작 방법을 확인해보세요!

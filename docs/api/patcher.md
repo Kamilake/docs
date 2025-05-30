@@ -1,68 +1,68 @@
-# Patcher
+# Patcher (패처)
 
-`Patcher` is a utility class for modifying existing functions. Instance is accessible through the [BdApi](./bdapi). This is extremely useful for modifying the internals of Discord by adjusting return value or React renders, or arguments of internal functions.
+`Patcher`는 기존 함수들을 수정하기 위한 유틸리티 클래스예요! 🔧 [BdApi](./bdapi)를 통해 인스턴스에 접근할 수 있어요. 반환값이나 React 렌더링, 또는 내부 함수들의 인수를 조정해서 Discord의 내부를 수정하는 데 정말 유용해요!
 
-## Properties
+## 속성들 (Properties)
 
 
 
-## Methods
+## 메서드들 (Methods)
 
 ### after
-This method patches onto another function, allowing your code to run afterwards.  Using this, you are able to modify the return value after the original method is run.
+이 메서드는 다른 함수에 패치를 적용해서, 코드가 나중에 실행되도록 해줘요! 이걸 사용하면 원본 메서드가 실행된 후에 반환값을 수정할 수 있어요. 후처리의 달인이죠! ✨
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-caller|string|Name of the caller of the patch function
-moduleToPatch|object|Object with the function to be patched. Can also be an object's prototype.
-functionName|string|Name of the function to be patched
-callback|function|Function to run after the original method. The function is given the `this` context, the `arguments` of the original function, and the `return` value of the original function.
+caller|string|패치 함수를 호출하는 자의 이름
+moduleToPatch|object|패치될 함수를 가진 객체. 객체의 프로토타입도 가능해요.
+functionName|string|패치될 함수의 이름
+callback|function|원본 메서드 이후에 실행될 함수. 이 함수는 `this` 컨텍스트, 원본 함수의 `arguments`, 그리고 원본 함수의 `return` 값을 받아요.
 
-**Returns:** `function` - Function that cancels the original patch
+**반환값:** `function` - 원본 패치를 취소하는 함수예요!
 ___
 
 ### before
-This method patches onto another function, allowing your code to run beforehand.  Using this, you are also able to modify the incoming arguments before the original method is run.
+이 메서드는 다른 함수에 패치를 적용해서, 코드가 미리 실행되도록 해줘요! 이걸 사용하면 원본 메서드가 실행되기 전에 들어오는 인수들을 수정할 수 있어요. 전처리의 마법사죠! 🎩
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-caller|string|Name of the caller of the patch function
-moduleToPatch|object|Object with the function to be patched. Can also be an object's prototype.
-functionName|string|Name of the function to be patched
-callback|function|Function to run before the original method. The function is given the `this` context and the `arguments` of the original function.
+caller|string|패치 함수를 호출하는 자의 이름
+moduleToPatch|object|패치될 함수를 가진 객체. 객체의 프로토타입도 가능해요.
+functionName|string|패치될 함수의 이름
+callback|function|원본 메서드 이전에 실행될 함수. 이 함수는 `this` 컨텍스트와 원본 함수의 `arguments`를 받아요.
 
-**Returns:** `function` - Function that cancels the original patch
+**반환값:** `function` - 원본 패치를 취소하는 함수예요!
 ___
 
 ### getPatchesByCaller
-Returns all patches by a particular caller. The patches all have an `unpatch()` method.
+특정 호출자의 모든 패치들을 반환해줘요! 패치들은 모두 `unpatch()` 메서드를 가지고 있어요. 패치 관리의 달인이에요! 📋
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-caller|string|ID of the original patches
+caller|string|원본 패치들의 ID
 
-**Returns:** `Array.<function()>` - Array of all the patch objects
+**반환값:** `Array.<function()>` - 모든 패치 객체들의 배열이에요!
 ___
 
 ### instead
-This method patches onto another function, allowing your code to run instead.  Using this, you are able to replace the original completely. You can still call the original manually if needed.
+이 메서드는 다른 함수에 패치를 적용해서, 코드가 대신 실행되도록 해줘요! 이걸 사용하면 원본을 완전히 대체할 수 있어요. 필요하다면 여전히 원본을 수동으로 호출할 수 있어요. 완전 대체의 황제죠! 👑
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-caller|string|Name of the caller of the patch function
-moduleToPatch|object|Object with the function to be patched. Can also be an object's prototype.
-functionName|string|Name of the function to be patched
-callback|function|Function to run before the original method. The function is given the `this` context, `arguments` of the original function, and also the original function.
+caller|string|패치 함수를 호출하는 자의 이름
+moduleToPatch|object|패치될 함수를 가진 객체. 객체의 프로토타입도 가능해요.
+functionName|string|패치될 함수의 이름
+callback|function|원본 메서드 이전에 실행될 함수. 이 함수는 `this` 컨텍스트, 원본 함수의 `arguments`, 그리고 원본 함수도 받아요.
 
-**Returns:** `function` - Function that cancels the original patch
+**반환값:** `function` - 원본 패치를 취소하는 함수예요!
 ___
 
 ### unpatchAll
-Automatically cancels all patches created with a specific ID.
+특정 ID로 만들어진 모든 패치들을 자동으로 취소해줘요! 일괄 정리의 전문가예요! 🧹
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-caller|string|ID of the original patches
+caller|string|원본 패치들의 ID
 
-**Returns:** `void`
+**반환값:** `void`
 ___

@@ -1,95 +1,91 @@
 ---
 order: 1
-description: Learning to use React in a plugin.
+description: 플러그인에서 React 사용법을 배워보아요!
 ---
 
 # React
 
-::: tip
+::: tip 꿀팁! 💡
 
-This is not a tutorial on React in general, just on using it in Discord and BetterDiscord. For general React learning and documentation check out [React.dev](https://react.dev/learn).
+이 문서는 일반적인 React 튜토리얼이 아니라, Discord와 BetterDiscord에서 React를 사용하는 방법에 대한 내용이에요! React 전반에 대한 학습과 문서는 [React.dev](https://react.dev/learn)에서 확인해보세요.
 
 :::
 
+Discord 자체가 React로 만들어져 있어서, 플러그인에서 React를 사용하는 것이 정말 쉬워요! 🎉 나중에 다룰 [React Injection](../advanced/react.md)에도 매우 유용하답니다.
 
-Since Discord itself is made using React, it's really easy to make use of within a plugin. It's also very convenient for [React Injection](../advanced/react.md) which we'll get to later on.
+앞으로 진행하면서 꼭 기억해야 할 점이 하나 있어요: [번들링(bundling)](./bundling.md) 없이는 플러그인에서 JSX 스타일의 React 컴포넌트를 사용할 수 없어요. 그래서 이 섹션에서는 JSX 없이 진행할 예정이에요.
 
-One thing to keep in mind going forward: without [bundling](./bundling.md), you cannot use JSX style react components in a plugin. For that reason, this section will be done without any JSX.
+## 기본기 다지기
 
-## The Basics
-
-BetterDiscord provides both the `React` and `ReactDOM` globals on the `BdApi` object. This gives you access to make functional components, make class-based components, or even render into an existing DOM node. Take a look at the example below to get an idea of how it might work in your own plugin.
+BetterDiscord는 `BdApi` 객체에 `React`와 `ReactDOM` 전역 변수를 제공해요. 이를 통해 함수형 컴포넌트를 만들거나, 클래스 기반 컴포넌트를 만들거나, 심지어 기존 DOM 노드에 렌더링할 수도 있어요! 아래 예제를 보면서 여러분의 플러그인에서 어떻게 활용할 수 있는지 감을 잡아보세요. 😊
 
 ::: code-group
-```js:line-numbers [Class]
+```js:line-numbers [클래스형]
 class MyComponent extends BdApi.React.Component {
   render() {
-    return BdApi.React.createElement("div", {className: "my-component"}, "Hello World!");
+    return BdApi.React.createElement("div", {className: "my-component"}, "안녕하세요!");
   }
 }
 ```
 
-```jsx:line-numbers [Functional]
+```jsx:line-numbers [함수형]
 function MyComponent() {
-  return BdApi.React.createElement("div", {className: "my-component"}, "Hello World!");
+  return BdApi.React.createElement("div", {className: "my-component"}, "안녕하세요!");
 }
 ```
 :::
 
-
-Using hooks for functional components and state in class-based components also work just fine.
+함수형 컴포넌트의 훅(hooks)이나 클래스 기반 컴포넌트의 상태(state)도 완벽하게 작동해요!
 
 ::: code-group
-```js:line-numbers [Class]
+```js:line-numbers [클래스형]
 class MyComponent extends BdApi.React.Component {
   constructor(props) {
     this.state = {disabled: props.disabled ?? false};
   }
   render() {
-    return BdApi.React.createElement("button", {className: "my-component", disabled: this.state.disabled}, "Hello World!");
+    return BdApi.React.createElement("button", {className: "my-component", disabled: this.state.disabled}, "안녕하세요!");
   }
 }
 ```
 
-```jsx:line-numbers [Functional]
+```jsx:line-numbers [함수형]
 function MyComponent({disabled = false}) {
   const [isDisabled, setDisabled] = BdApi.React.useState(disabled);
-  return BdApi.React.createElement("button", {className: "my-component", disabled: isDisabled}, "Hello World!");
+  return BdApi.React.createElement("button", {className: "my-component", disabled: isDisabled}, "안녕하세요!");
 }
 ```
 :::
 
+`BdApi.React`를 계속 반복하는 게 좀 번거롭다고 생각하시나요? 많은 개발자들이 자신의 플러그인에서 간단히 `const R = BdApi.React;`나 `const ce = BdApi.React.createElement;`처럼 별칭을 만들어 사용해요. 그렇지 않은 개발자들은 대부분 JSX와 번들링을 사용하는데, 이건 다음 챕터에서 다뤄볼 예정이에요!
 
-If you think that repeating `BdApi.React` over and over is a bit tedious, many developers alias it in their own plugins with a simple `const R = BdApi.React;` or even `const ce = BdApi.React.createElement;`. Those that don't tend to use JSX and bundling which we'll get to in the next chapter.
+## BetterDiscord에서의 React
 
-
-## React in BetterDiscord
-
-Some of the [UI related functions](../../api/ui.md) of BetterDiscord accept React Components as options to be rendered. Some accept React Nodes/Elements which is just having already called `createElement`. One good example is the confirmation modal. It's already a very helpful utility, but adding in your own custom React component allows for some very powerful UI and UX for end users. Just as a quick example, take a look at how we can combine the our `MyComponent` from before with the confirmation modal.
+BetterDiscord의 일부 [UI 관련 함수들](../../api/ui.md)은 렌더링할 옵션으로 React 컴포넌트를 받아요. 일부는 React 노드/엘리먼트를 받는데, 이건 이미 `createElement`를 호출한 것들이에요. 좋은 예시 중 하나가 확인 모달(confirmation modal)이에요. 이미 매우 유용한 유틸리티인데, 여기에 커스텀 React 컴포넌트를 추가하면 사용자에게 정말 강력한 UI와 UX를 제공할 수 있어요! 간단한 예시로, 앞서 만든 `MyComponent`를 확인 모달과 결합해보는 방법을 살펴보세요.
 
 ```js
-BdApi.showConfirmationModal("My Component Demo", BdApi.React.createElement(MyComponent));
+BdApi.showConfirmationModal("내 컴포넌트 데모", BdApi.React.createElement(MyComponent));
 ```
 
-And here's how it looks.
+그러면 이렇게 보여요!
 
 ![Plugin Modal](./img/plugin_modal.png)
 
-How you use it is entirely up to you! You can put anything in these modals from something as simple as text information, to full blown settings panels.
+어떻게 사용할지는 완전히 여러분 마음이에요! 간단한 텍스트 정보부터 완전한 설정 패널까지 모달에 뭐든지 넣을 수 있어요.
 
-Speaking of settings panels, you might recall from [Plugin Structure](../introduction/structure.md) that plugins can have a `getSettingsPanel()` that return a React component. Look at this sample plugin below for a short example.
+설정 패널 얘기가 나왔으니 말인데, [플러그인 구조](../introduction/structure.md)에서 플러그인이 React 컴포넌트를 반환하는 `getSettingsPanel()`을 가질 수 있다는 걸 기억하시나요? 간단한 예제를 위해 아래 샘플 플러그인을 살펴보세요.
 
 ```js:line-numbers [MyComponentDemo.plugin.js]
 /**
- * @name My Component Demo
- * @description Showing off a settings panel with a custom react component.
+ * @name 내 컴포넌트 데모
+ * @description 커스텀 React 컴포넌트로 설정 패널 보여주기
  * @version 1.0.0
  * @author BetterDiscord
  */
 
 function MyComponent({disabled = false}) {
   const [isDisabled, setDisabled] = BdApi.React.useState(disabled);
-  return BdApi.React.createElement("button", {className: "my-component", disabled: isDisabled}, "Hello World!");
+  return BdApi.React.createElement("button", {className: "my-component", disabled: isDisabled}, "안녕하세요!");
 }
 
 module.exports = class test { 
@@ -102,20 +98,19 @@ module.exports = class test {
 }
 ```
 
-Your plugin will show that it has a settings panel.
+여러분의 플러그인이 설정 패널을 가지고 있다고 표시될 거예요.
 
 ![Plugin Card](./img/plugin_card.png)
 
-And clicking on it shows our new settings panel!
+그리고 클릭하면 새로운 설정 패널이 나타나요! 
 
 ![Plugin Settings](./img/plugin_settings.png)
 
-It may not be the best settings panel, but it's certainly a start.
+최고의 설정 패널은 아닐 수도 있지만, 확실히 시작이에요! 😄
 
+## Discord에서의 React
 
-## React in Discord
-
-If you already know React, then this will section will be pretty obvious. In order to render your React component inside of Discord, first add your own `HTMLElement` somewhere.
+React를 이미 알고 계시다면, 이 섹션은 꽤 명백할 거예요. Discord 내부에 React 컴포넌트를 렌더링하려면, 먼저 어딘가에 자신만의 `HTMLElement`를 추가하세요.
 
 ```js
 const element = BdApi.DOM.parseHTML("<div>");
@@ -123,20 +118,20 @@ const target = document.querySelector(".container-YkUktl");
 target.append(element);
 ```
 
-Then just render your element from the previous section into that DOM node.
+그다음 이전 섹션의 엘리먼트를 그 DOM 노드에 렌더링하면 돼요.
 
 ```js
 BdApi.ReactDOM.render(BdApi.React.createElement(MyComponent), element);
 ```
 
-If you're following this tutorial, you'll see a little button appear down next to the settings cog at the bottom left of the client. When you're done with your component, be sure to unmount it.
+이 튜토리얼을 따라하고 계시다면, 클라이언트 왼쪽 하단의 설정 톱니바퀴 옆에 작은 버튼이 나타나는 걸 보실 수 있을 거예요. 컴포넌트 사용이 끝나면 언마운트하는 걸 잊지 마세요.
 
 ```js
 BdApi.ReactDOM.unmountComponentAtNode(element);
 ```
 
-And your button will be gone!
+그러면 버튼이 사라져요! ✨
 
-One thing to keep in mind, because Discord is contantly changing elements around, if your element gets removed from the `document`, you should unmount your component. Otherwise, you'll end up with a memory leak. You'll also still be trying to use UI that isn't even visible to the user. You can combine the `unmountComponentAtNode` function with the `MutationObserver` from [Using the DOM](../basics/dom.md) to automatically unmount whenever your element is removed from the `document`.
+한 가지 주의할 점은, Discord가 계속해서 엘리먼트들을 이동시키기 때문에, 여러분의 엘리먼트가 `document`에서 제거되면 컴포넌트를 언마운트해야 한다는 거예요. 그렇지 않으면 메모리 누수가 발생할 거예요. 또한 사용자에게 보이지도 않는 UI를 계속 사용하려고 할 수도 있고요. [DOM 사용하기](../basics/dom.md)의 `MutationObserver`와 `unmountComponentAtNode` 함수를 결합해서 여러분의 엘리먼트가 `document`에서 제거될 때마다 자동으로 언마운트하도록 할 수 있어요.
 
-Lastly, while this does render React inside of the Discord client, it doesn't actually render as part of Discord's React tree. This might seem inconsequential, but it can be the difference between things working and not. If you're re-using internal Discord components, especially components involving popouts and tooltips, they won't work outside of Discord's tree. If you're interested in rendering inside of Discord's React tree, you'll learn more in the [React Injection](../advanced/react.md) later on.
+마지막으로, 이렇게 하면 Discord 클라이언트 내부에 React가 렌더링되긴 하지만, 실제로는 Discord의 React 트리의 일부로 렌더링되는 건 아니에요. 이게 별거 아닌 것처럼 보일 수 있지만, 실제로는 작동하는 것과 작동하지 않는 것의 차이를 만들 수 있어요. Discord의 내부 컴포넌트, 특히 팝아웃과 툴팁이 포함된 컴포넌트들을 재사용하는 경우, Discord 트리 외부에서는 작동하지 않을 거예요. Discord의 React 트리 내부에서 렌더링하는 것에 관심이 있으시다면, 나중에 [React Injection](../advanced/react.md)에서 더 자세히 배우실 수 있어요! 🚀

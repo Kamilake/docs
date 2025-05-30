@@ -1,17 +1,17 @@
 ---
 order: 3
-description: The development environment.
+description: 개발 환경에 대해 알아보아요.
 ---
 
-# Environment
+# 환경
 
-This section expands upon the general environment info
+이 섹션에서는 일반적인 환경 정보를 확장해서 설명해요! 🌟
 
 ## Node.js
 
-BetterDiscord used to give direct access to the [Node.js](https://nodejs.org/) api directly in the renderer process. However, Discord made a change to their fork of Electron that made this impossible, practically speaking. That said, due to how important these APIs are, how ubiquitous their usage in plugins, and in the interest of backwards-compatibility, BetterDiscord has polyfilled certain APIs to make them available to plugins in the same way as before (`require`).
+BetterDiscord는 이전에 렌더러 프로세스에서 [Node.js](https://nodejs.org/) API에 직접 접근할 수 있게 해줬어요. 하지만 Discord가 Electron의 포크를 변경하여 이것이 실질적으로 불가능해졌어요. 그렇긴 하지만, 이 API들이 얼마나 중요한지, 플러그인에서 얼마나 널리 사용되는지, 그리고 하위 호환성을 고려하여, BetterDiscord는 이전과 같은 방식으로 플러그인에서 사용할 수 있도록 특정 API들을 폴리필했어요 (`require`).
 
-Currently, the list of polyfilled Node modules are:
+현재 폴리필된 Node 모듈 목록이에요:
 
 - Buffer
 - Crypto
@@ -21,20 +21,20 @@ Currently, the list of polyfilled Node modules are:
 - Request
 - VM
 
-These polyfills are not 100% exact replicas of these APIs but they are close enough that 99% of plugins had no issues when switching to this. In the future, BetterDiscord will introduce custom APIs with equivalent functionality, and deprecate the usage of these polyfills.
+이 폴리필들은 이 API들의 100% 정확한 복제본은 아니지만, 99%의 플러그인이 이것으로 전환할 때 문제가 없을 정도로 충분히 가까워요. 앞으로 BetterDiscord는 동등한 기능을 가진 커스텀 API를 도입하고, 이 폴리필들의 사용을 더 이상 권장하지 않을 예정이에요.
 
-However, for now feel free to use them. For instance, if you want to load a file in the current directory you can just use the `fs` module.
+하지만 지금은 자유롭게 사용하셔도 돼요! 예를 들어, 현재 디렉토리에 있는 파일을 로드하고 싶다면 `fs` 모듈을 그냥 사용하면 되어요.
 ```js
 const fs = require("fs");
 const myData = fs.readFileSync("myfile.txt", "utf8");
 ```
 
-Though this guide won't be giving a tutorial on the Node.js standard library--their official docs do that--you will see example usages throughout.
+이 가이드에서는 Node.js 표준 라이브러리에 대한 튜토리얼을 제공하지 않을 거예요--공식 문서가 그 역할을 하니까요--하지만 전체적으로 사용 예시들을 보게 될 거예요.
 
-## Plugin API
+## 플러그인 API
 
-BetterDiscord provides an API for plugins. The guides here show how it's used and the [API reference](/api/) section has an exhaustive list of what's available. The API exists as a global and provides several utility functions relevant to plugins. This includes data storage, UI rendering, notifications, and utilities to explore Discord's internals.
+BetterDiscord는 플러그인을 위한 API를 제공해요. 여기 가이드들은 어떻게 사용하는지 보여주고, [API 레퍼런스](/api/) 섹션에는 사용 가능한 것들의 완전한 목록이 있어요. API는 전역으로 존재하며 플러그인과 관련된 여러 유틸리티 함수들을 제공해요. 여기에는 데이터 저장, UI 렌더링, 알림, 그리고 Discord 내부를 탐색하는 유틸리티가 포함되어요.
 
-## Discord's Internals
+## Discord의 내부 구조
 
-Inside of this environment, BetterDiscord provides access to Discord's internals via searching their modules. Understanding and using these modules is a task left to the developer. But the [advanced](../advanced/patching.md) guide provides some insight on how to get started. Searching through and using Discord's own modules are some of the most important skills for building complex plugins.
+이 환경 안에서, BetterDiscord는 Discord의 모듈을 검색하여 내부에 접근할 수 있게 해줘요. 이 모듈들을 이해하고 사용하는 것은 개발자에게 맡겨진 과제예요. 하지만 [고급](../advanced/patching.md) 가이드에서 시작하는 방법에 대한 통찰을 제공해요. Discord 자체 모듈들을 검색하고 사용하는 것은 복잡한 플러그인을 구축하는 데 가장 중요한 기술 중 하나예요! 💪

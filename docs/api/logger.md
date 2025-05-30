@@ -1,76 +1,76 @@
-# Logger
+# Logger (로거)
 
-`Logger` is a helper class to log data in a nice and consistent way. An instance is available on [BdApi](./bdapi).
+`Logger`는 일관되고 멋진 방식으로 데이터를 로깅하는 헬퍼 클래스예요! 📝 [BdApi](./bdapi)에서 인스턴스를 사용할 수 있어요.
 
-## Properties
+## 속성들 (Properties)
 
 
 
-## Methods
+## 메서드들 (Methods)
 
 ### debug
-Logs used for debugging purposes.
+디버깅 목적으로 사용되는 로그예요! 버그 잡기의 친구죠! 🐛
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-module|string|Name of the calling module.
-message|...any|Messages to have logged.
+module|string|호출하는 모듈의 이름
+message|...any|로깅할 메시지들
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
 ### error
-Logs an error message.
+에러 메시지를 로깅해줘요! 문제가 생겼을 때의 신호등이에요! 🚨
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-pluginName|string|Name of the calling module
-message|...any|Messages to have logged.
+pluginName|string|호출하는 모듈의 이름
+message|...any|로깅할 메시지들
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
 ### info
-Logs an informational message.
+정보성 메시지를 로깅해줘요! 유용한 정보를 전달하는 전령사예요! 📢
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-module|string|Name of the calling module.
-message|...any|Messages to have logged.
+module|string|호출하는 모듈의 이름
+message|...any|로깅할 메시지들
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
 ### log
-Logs used for basic loggin.
+기본 로깅에 사용돼요! 가장 친숙한 로깅 방식이죠! 📋
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-module|string|Name of the calling module.
-message|...any|Messages to have logged.
+module|string|호출하는 모듈의 이름
+message|...any|로깅할 메시지들
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
 ### stacktrace
-Logs an error using a collapsed error group with stacktrace.
+스택트레이스와 함께 접힌 에러 그룹을 사용해서 에러를 로깅해줘요! 에러 추적의 달인이에요! 🔍
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-pluginName|string|Name of the calling module.
-message|string|Message or error to have logged.
-error|Error|Error object to log with the message.
+pluginName|string|호출하는 모듈의 이름
+message|string|로깅할 메시지나 에러
+error|Error|메시지와 함께 로깅할 에러 객체
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
 ### warn
-Logs a warning message.
+경고 메시지를 로깅해줘요! 주의가 필요할 때의 노란 신호등이에요! ⚠️
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-module|string|Name of the calling module.
-message|...any|Messages to have logged.
+module|string|호출하는 모듈의 이름
+message|...any|로깅할 메시지들
 
-**Returns:** `void`
+**반환값:** `void`
 ___

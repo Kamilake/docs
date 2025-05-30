@@ -1,83 +1,83 @@
 ---
 order: 6
-description: Work with other addons.
+description: 다른 애드온들과 작업하는 방법을 알아봅시다.
 ---
 
-# Addon Interaction
+# 애드온 상호작용
 
-Within BetterDiscord you can interact with different addons in two main ways. Either through direct interaction--like where one plugin puts something in the global scope, and another plugin uses it--or through the `BdApi`. That second one is what we'll be taking a look at today.
+BetterDiscord 내에서 다른 애드온들과 상호작용하는 방법은 주로 두 가지예요! 직접 상호작용--한 플러그인이 전역 스코프에 뭔가를 두고 다른 플러그인이 그걸 사용하는 것--이나 `BdApi`를 통한 상호작용이죠. 오늘은 두 번째 방법을 살펴볼 거예요! 😊
 
 ## AddonAPI
 
-The addon api is available as part of `BdApi`. Theres two instances, one for plugins and one for themes at `BdApi.Plugins` and `BdApi.Themes` respectively. This api has a few helpful utilities for interacting with other plugins, and even has the current addon folder as a property. For a more exhaustive list of available methods and properties, take a look at the [api reference](/api/bdapi).
+애드온 API는 `BdApi`의 일부로 사용할 수 있어요. 플러그인용과 테마용 두 개의 인스턴스가 있는데, 각각 `BdApi.Plugins`와 `BdApi.Themes`에 있어요. 이 API에는 다른 플러그인들과 상호작용하는 데 도움이 되는 몇 가지 유용한 유틸리티들이 있고, 현재 애드온 폴더를 속성으로 가지고 있기도 해요. 사용 가능한 메서드와 속성의 더 자세한 목록은 [API 레퍼런스](/api/bdapi)를 확인해보세요! 🤓
 
-## Getting Addons
+## 애드온 가져오기
 
-You can get a specific addon if you know the addon ID using `get(id)`. For example to get the instance of ZeresPluginLibrary you can do
+애드온 ID를 안다면 `get(id)`를 사용해서 특정 애드온을 가져올 수 있어요. 예를 들어 ZeresPluginLibrary의 인스턴스를 가져오려면 이렇게 하면 돼요
 
 ```js
 BdApi.Plugins.get("ZeresPluginLibrary");
 ```
 
-This will give you an object that includes the addon's meta information, as well as some other BetterDiscord internal information. Most notably there is also an `instance` property that is the current instance of the plugin. This is probably the most important property as it gives you access to directly interact.
+이렇게 하면 애드온의 메타 정보와 기타 BetterDiscord 내부 정보가 포함된 객체를 얻을 수 있어요. 가장 주목할 만한 건 `instance` 속성인데, 이게 플러그인의 현재 인스턴스예요. 직접 상호작용할 수 있게 해주기 때문에 아마 가장 중요한 속성일 거예요! ✨
 
 ::: warning
 
-Modifying the values of this addon instance is unsupported. The `instance` property is also subject to change until a new standard is introduced.
+이 애드온 인스턴스의 값을 수정하는 것은 지원되지 않아요. `instance` 속성은 새로운 표준이 도입될 때까지 변경될 수 있어요.
 
 :::
 
-Alternatively you can get _all_ the available addons in a giant array.
+또는 거대한 배열로 _모든_ 사용 가능한 애드온들을 가져올 수도 있어요.
 
 ```js
 BdApi.Plugins.getAll();
 ```
 
-This is useful if you need to interact with many addons, or if your checking for existence of others.
+이건 많은 애드온들과 상호작용해야 하거나 다른 애드온들의 존재를 확인할 때 유용해요! 😄
 
-## Toggling Addons
+## 애드온 토글하기
 
-If you have the ID of the addon you'd like to toggle, this is pretty straightforward.
+토글하고 싶은 애드온의 ID가 있다면 이건 꽤 간단해요.
 
 ```js
 BdApi.Themes.toggle("Nox");
 ```
 
-Of course you can have more granular control and specifically enable or disable when you need to. You can even combine all three.
+물론 더 세밀한 제어를 할 수도 있고, 필요할 때 구체적으로 활성화하거나 비활성화할 수도 있어요. 세 개 모두 결합할 수도 있구요!
 
 ```js
-BdApi.Themes.enable("Nox");  // Nox is now enabled
-BdApi.Themes.toggle("Nox");  // Nox is now disabled
-BdApi.Themes.enable("Nox");  // Nox is now enabled
-BdApi.Themes.toggle("Nox");  // Nox is now disabled
-BdApi.Themes.disable("Nox"); // Nox is now disabled
-BdApi.Themes.toggle("Nox");  // Nox is now enabled
-BdApi.Themes.enable("Nox");  // Nox is now enabled
-BdApi.Themes.disable("Nox"); // Nox is now disabled
+BdApi.Themes.enable("Nox");  // Nox가 이제 활성화됐어요
+BdApi.Themes.toggle("Nox");  // Nox가 이제 비활성화됐어요
+BdApi.Themes.enable("Nox");  // Nox가 이제 활성화됐어요
+BdApi.Themes.toggle("Nox");  // Nox가 이제 비활성화됐어요
+BdApi.Themes.disable("Nox"); // Nox가 이제 비활성화됐어요
+BdApi.Themes.toggle("Nox");  // Nox가 이제 활성화됐어요
+BdApi.Themes.enable("Nox");  // Nox가 이제 활성화됐어요
+BdApi.Themes.disable("Nox"); // Nox가 이제 비활성화됐어요
 ```
 
-You can even check if it's already enabled to save yourself some trouble.
+이미 활성화되어 있는지 확인해서 수고를 덜 수도 있어요!
 
 ```js
 BdApi.Themes.isEnabled("Nox");
 ```
 
-## Interacting with Plugins
+## 플러그인과 상호작용하기
 
-Depending on what you are trying to do, it may be useful to quickly check if the plugin is enabled before trying to interact with it.
+무엇을 하려고 하는지에 따라, 상호작용을 시도하기 전에 플러그인이 활성화되어 있는지 빠르게 확인하는 게 유용할 수 있어요.
 
 ```js
 BdApi.Plugins.isEnabled("Zalgo");
 ```
 
-Keep in mind there are many functions in plugins that <u>do not</u> require them to be enabled for them to be used. This is how most plugin libraries operate.
+플러그인의 많은 함수들이 활성화되지 않아도 사용할 수 있다는 걸 염두에 두세요. 대부분의 플러그인 라이브러리들이 이런 식으로 작동해요! 😊
 
-From there, you can even directly call functions from your plugin. One common use-case for this is when you want to add an optional feature to your plugin that makes use of another plugin.
+거기서부터 플러그인에서 함수들을 직접 호출할 수도 있어요. 이런 용법의 일반적인 사례 중 하나는 다른 플러그인을 활용하는 선택적 기능을 플러그인에 추가하고 싶을 때예요.
 
 ```js:line-numbers
 class MyPlugin {
     start() {
-        let myGreeting = "Hello User!";
+        let myGreeting = "안녕하세요 사용자님!";
         if (BdApi.Plugins.isEnabled("Zalgo")) {
             const zalgoPlugin = BdApi.Plugins.get("Zalgo").instance;
             // highlight-next-line
@@ -94,6 +94,6 @@ class MyPlugin {
 }
 ```
 
-In this example, a user with this plugin will get a normal "Hello User!" greeting. But if they have a Zalgo plugin installed and enabled, they'll get a Zalgo-style greeting instead.
+이 예제에서, 이 플러그인을 가진 사용자는 일반적인 "안녕하세요 사용자님!" 인사를 받게 될 거예요. 하지만 Zalgo 플러그인이 설치되어 있고 활성화되어 있다면, 대신 Zalgo 스타일의 인사를 받게 될 거예요! 신기하죠? 😎
 
-On line 6 (the highlighted line), we check for the `format()` function before we use it. This is one of the most important techniques to use when interacting with other plugins through this interface. Neither BetterDiscord nor the other plugin will always guarantee a specific stable internal API to the plugin. Therefore, it's best to check that the plugin's architecture has not been changed before using it like we do here. That said, you are absolutely free and encouraged to developer an interchange API between plugins if both developers agree. Agreements like that reduce errors and issues for end users.
+6번째 줄(하이라이트된 줄)에서, 우리는 `format()` 함수를 사용하기 전에 확인해요. 이건 이 인터페이스를 통해 다른 플러그인들과 상호작용할 때 사용해야 하는 가장 중요한 기법 중 하나예요. BetterDiscord도 다른 플러그인도 플러그인에 특정한 안정적인 내부 API를 항상 보장하지 않거든요. 따라서 여기서 하듯이 플러그인의 아키텍처가 변경되지 않았는지 확인하는 게 좋아요. 그렇긴 하지만, 두 개발자가 모두 동의한다면 플러그인 간에 교환 API를 개발하는 것은 절대적으로 자유롭고 권장돼요! 그런 합의들은 최종 사용자들의 오류와 문제를 줄여주거든요. 🤝

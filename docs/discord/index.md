@@ -2,6 +2,6 @@
 order: 1
 ---
 
-# Overview
+# 개요 (Overview)
 
-If you're looking for a tutorial or a guide on how to actually use Discord Internals, you should take a look at our [plugin guide](/plugins/) instead!
+Discord 내부 구조를 실제로 어떻게 사용하는지에 대한 튜토리얼이나 가이드를 찾고 계신다면, 대신 우리의 [플러그인 가이드](/plugins/)를 확인해 보세요! 훨씬 더 도움이 될 거예요! 😊🔧

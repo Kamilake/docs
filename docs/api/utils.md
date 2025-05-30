@@ -1,88 +1,88 @@
-# Utils
+# Utils (유틸리티)
 
-`Utils` is a utility containing commonly reused functions. Instance is accessible through the [BdApi](./bdapi).
+`Utils`는 자주 재사용되는 함수들을 모아놓은 정말 유용한 유틸리티예요! 🛠️ [BdApi](./bdapi)를 통해 인스턴스에 접근할 수 있어요.
 
-## Properties
+## 속성들 (Properties)
 
 
 
-## Methods
+## 메서드들 (Methods)
 
 ### className
-Builds a classname string from any number of arguments. This includes arrays and objects. When given an array all values from the array are added to the list. When given an object they keys are added as the classnames if the value is truthy. Copyright (c) 2018 Jed Watson https://github.com/JedWatson/classnames MIT License
+여러 개의 인수로부터 클래스명 문자열을 만들어줘요! 배열이나 객체도 처리할 수 있어서 정말 똑똑해요. 😊 배열이 주어지면 배열의 모든 값들이 목록에 추가되고, 객체가 주어지면 값이 truthy일 때 키들이 클래스명으로 추가돼요. Copyright (c) 2018 Jed Watson https://github.com/JedWatson/classnames MIT License
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-argument|...any|Anything that should be used to add classnames
+argument|...any|클래스명을 추가하는 데 사용될 모든 것
 
-**Returns:** `string` - Joined classname
+**반환값:** `string` - 합쳐진 클래스명이에요! ✨
 ___
 
 ### debounce
-Returns a function, that, as long as it continues to be invoked, will not be triggered. The function will be called after it stops being called for `delay` milliseconds. It is called at the end of the sequence (trailing edge).  Adapted from the version by David Walsh (https://davidwalsh.name/javascript-debounce-function)
+계속해서 호출되는 한 트리거되지 않는 함수를 반환해줘요! `delay` 밀리초 동안 호출이 멈춘 후에 함수가 호출돼요. 연속적인 시퀀스의 끝에서 호출되는 거죠 (trailing edge). David Walsh (https://davidwalsh.name/javascript-debounce-function)의 버전에서 적응한 거예요! 정말 유용하죠? 🚀
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-executor|function|The function to be debounced
-delay|number|Number of ms to delay calls
+executor|function|디바운스될 함수
+delay|number|호출을 지연시킬 밀리초 수
 
-**Returns:** `function` - A debounced version of the function
+**반환값:** `function` - 디바운스된 버전의 함수예요!
 ___
 
 ### escapeHTML
-Takes a string of HTML and escapes it using the browser's own escaping mechanism.
+HTML 문자열을 받아서 브라우저 자체의 이스케이프 메커니즘을 사용해서 이스케이프해줘요! 안전함이 최고죠! 🛡️
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-html|string|HTML to be escaped
+html|string|이스케이프될 HTML
 
-**Returns:** `string` - Escaped HTML string
+**반환값:** `string` - 이스케이프된 HTML 문자열이에요!
 ___
 
 ### extend
-Deep extends an object with a set of other objects. Objects later in the list of `extenders` have priority, that is to say if one sets a key to be a primitive, it will be overwritten with the next one with the same key. If it is an object, and the keys match, the object is extended. This happens recursively.
+객체를 다른 객체들의 집합으로 깊게 확장해줘요! `extenders` 목록에서 나중에 오는 객체들이 우선순위를 가져요. 즉, 하나가 키를 원시값으로 설정하면, 같은 키를 가진 다음 객체가 덮어써요. 객체이고 키가 매치되면 객체가 확장돼요. 이건 재귀적으로 일어나죠! 정말 똑똑해요! 🧠
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-extendee|object|Object to be extended
-extenders|...object|Objects to extend with
+extendee|object|확장될 객체
+extenders|...object|확장할 객체들
 
-**Returns:** `object` - A reference to `extendee`
+**반환값:** `object` - `extendee`에 대한 참조예요!
 ___
 
 ### findInTree
-Finds a value, subobject, or array from a tree that matches a specific filter. This is a DFS.
+특정 필터와 매치되는 값, 하위객체, 또는 배열을 트리에서 찾아줘요! 이건 DFS(깊이 우선 탐색)예요. 정말 깊숙이 탐험하죠! 🔍
 
-| Parameter |  Type  | Optional | Default |       Description      |
+| 매개변수 |  타입  | 선택사항 | 기본값 |       설명      |
 |:----------|:------:|:--------:|:-------:|:----------------------:|
-tree|object|&#x274C;|*none*|Tree that should be walked
-searchFilter|callable|&#x274C;|*none*|Filter to check against each object and subobject
-options|object|&#x274C;|*none*|Additional options to customize the search
-options.walkable|Array.&lt;string&gt;\|null|&#x2705;|*none*|Array of strings to use as keys that are allowed to be walked on. `null` indicates all keys are walkable.
-options.ignore|Array.&lt;string&gt;|&#x2705;|[]|Array of strings to use as keys to exclude from the search. Most helpful when `walkable = null`.
+tree|object|&#x274C;|*없음*|걸어다닐 트리
+searchFilter|callable|&#x274C;|*없음*|각 객체와 하위객체에 대해 체크할 필터
+options|object|&#x274C;|*없음*|검색을 커스터마이즈하는 추가 옵션들
+options.walkable|Array.&lt;string&gt;\|null|&#x2705;|*없음*|걸어다닐 수 있는 키로 사용할 문자열 배열. `null`은 모든 키가 걸어다닐 수 있음을 의미해요.
+options.ignore|Array.&lt;string&gt;|&#x2705;|[]|검색에서 제외할 키로 사용할 문자열 배열. `walkable = null`일 때 가장 도움이 돼요.
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
 ### getNestedValue
-Gets a nested value (if it exists) of an object safely. keyPath should be something like `key.key2.key3`.
-Numbers can be used for arrays as well like `key.key2.array.0.id`.
+객체의 중첩된 값을 안전하게 가져와줘요 (존재한다면요)! keyPath는 `key.key2.key3` 같은 형태여야 해요.
+배열에도 숫자를 사용할 수 있어요. `key.key2.array.0.id` 처럼요! 정말 편리하죠? 🎯
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-obj|object|object to get nested value from
-keyPath|string|key path to the desired value
+obj|object|중첩된 값을 가져올 객체
+keyPath|string|원하는 값으로의 키 경로
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
 ### semverCompare
-This works on semantic versioning e.g. "1.0.0".
+이건 "1.0.0" 같은 시맨틱 버저닝에서 작동해요! 버전 비교의 달인이죠! 📊
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-currentVersion|string|
-newVersion|string|
+currentVersion|string|현재 버전
+newVersion|string|새로운 버전
 
-**Returns:** `number` - 0 indicates equal, -1 indicates left hand greater, 1 indicates right hand greater
+**반환값:** `number` - 0은 같음, -1은 왼쪽이 더 큼, 1은 오른쪽이 더 큼을 의미해요!
 ___

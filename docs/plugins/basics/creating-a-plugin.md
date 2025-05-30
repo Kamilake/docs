@@ -1,102 +1,101 @@
 ---
 order: 1
-description: A guide to the basics.
+description: 기초에 대한 가이드예요.
 ---
 
-# Creating a Plugin
+# 플러그인 만들기
 
-## The Idea
+## 아이디어
 
-The first thing to do when making a plugin, is to know what exactly you're trying to make. This helps limit the scope of what you're looking through in Discord's DOM tree or internal code, and also helps you structure your plugins. For example, a fully-fledged plugin that handles end-to-end encryption may need a bit more scaffolding than a plugin that just adds a button or some text to the screen.
+플러그인을 만들 때 가장 먼저 할 일은 정확히 무엇을 만들려고 하는지 아는 거예요! 이렇게 하면 Discord의 DOM 트리나 내부 코드에서 살펴볼 범위를 제한할 수 있고, 플러그인을 구조화하는 데도 도움이 돼요. 예를 들어, 종단 간 암호화를 처리하는 완전한 플러그인은 단순히 버튼이나 텍스트를 화면에 추가하는 플러그인보다 좀 더 많은 스캐폴딩이 필요할 거예요. 🤔
 
-Knowing what you want the plugin to do also allows you to reach out to our community of developers and ask for help. It's much easier to help someone with a specific task or end-goal rather than someone that "just wants to make a plugin".
+플러그인이 무엇을 하기를 원하는지 아는 것은 또한 우리 개발자 커뮤니티에 연락해서 도움을 요청할 수 있게 해줘요. 특정한 작업이나 최종 목표가 있는 사람을 돕는 것이 "그냥 플러그인을 만들고 싶어하는" 사람을 돕는 것보다 훨씬 쉽거든요! 😊
 
-## The Style
+## 스타일
 
-Next, you'll need to decide which plugin style to use. As seen in the [plugin structure](../introduction/structure) docs, there a couple different ways to go about it. They are shown again below for clarity. Each one has pros and cons, but can each work well for simple to advanced plugins. In the end it ultimately comes down to the individual developer's style preference. A mix of the styles will be shown here in the docs.
+다음으로는 어떤 플러그인 스타일을 사용할지 결정해야 해요. [플러그인 구조](../introduction/structure) 문서에서 본 것처럼, 여러 가지 방법이 있어요. 명확성을 위해 아래에 다시 보여드릴게요! 각각 장단점이 있지만, 간단한 플러그인부터 고급 플러그인까지 모두 잘 작동할 수 있어요. 결국 개별 개발자의 스타일 선호도에 달려 있죠. 이 문서에서는 여러 스타일을 섞어서 보여드릴 예정이에요! ✨
 
 ::: code-group
-```js:line-numbers [Class]
+```js:line-numbers [클래스]
 /**
  * @name ExamplePlugin
  * @author YourName
- * @description Describe the basic functions. Maybe a support server link.
+ * @description 기본 기능들을 설명해주세요. 지원 서버 링크도 좋아요.
  * @version 0.0.1
  */
 
 module.exports = class MyPlugin {
   constructor(meta) {
-    // Do stuff in here before starting
+    // 시작하기 전에 여기서 작업해요
   }
 
   start() {
-    // Do stuff when enabled
+    // 활성화될 때 할 일들
   }
 
   stop() {
-    // Cleanup when disabled
+    // 비활성화될 때 정리 작업
   }
 };
 ```
 
 
-```js:line-numbers [Arrow]
+```js:line-numbers [화살표]
 /**
  * @name ExamplePlugin
  * @author YourName
- * @description Describe the basic functions. Maybe a support server link.
+ * @description 기본 기능들을 설명해주세요. 지원 서버 링크도 좋아요.
  * @version 0.0.1
  */
 
-// Do stuff here before being called
+// 호출되기 전에 여기서 작업해요
 
 module.exports = meta => ({
   start() {
-    // Do stuff when enabled
+    // 활성화될 때 할 일들
   },
   stop() {
-    // Cleanup when disabled
+    // 비활성화될 때 정리 작업
   }
 });
 ```
 
 
-```js:line-numbers [Return]
+```js:line-numbers [반환]
 /**
  * @name ExamplePlugin
  * @author YourName
- * @description Describe the basic functions. Maybe a support server link.
+ * @description 기본 기능들을 설명해주세요. 지원 서버 링크도 좋아요.
  * @version 0.0.1
  */
 
 module.exports = meta => {
-  // Do stuff in here before returning
+  // 반환하기 전에 여기서 작업해요
 
   return {
     start: () => {
-      // Do stuff when enabled
+      // 활성화될 때 할 일들
     },
     stop: () => {
-      // Cleanup when disabled
+      // 비활성화될 때 정리 작업
     }
   }
 };
 ```
 :::
 
-It's worth noting when deciding that each plugin is loaded similarly to a node module. This means that defining variables outside of the `module.exports` will not result in scope creep or variable bloat.
+결정할 때 주목할 점은 각 플러그인이 node 모듈과 유사하게 로드된다는 거예요. 이는 `module.exports` 외부에서 변수를 정의하는 것이 스코프 크리프나 변수 블로트를 발생시키지 않는다는 뜻이에요! 안심이죠? 😄
 
-Once you've got that decided, go ahead and save your template in your [plugins folder](../introduction/quick-start#plugin-folder) as `ExamplePlugin.plugin.js` and change `ExamplePlugin` to the name of your choice.
+이걸 결정했으면, [플러그인 폴더](../introduction/quick-start#plugin-folder)에 `ExamplePlugin.plugin.js`로 템플릿을 저장하고 `ExamplePlugin`을 원하는 이름으로 바꿔주세요.
 
+## 염두에 둘 것들
 
-## Things to Keep in Mind
+플러그인을 개발할 때 염두에 둘 것들이 많아요. 가장 중요한 것 중 하나는 플러그인이 비활성화될 때 어떻게 정리할지예요. 이게 단순해 보일 수 있지만, 개발하면서 염두에 두지 않으면 놓칠 수 있어요. DOM에 텍스트를 추가했는데 더 이상 참조가 없다고 해봅시다. 비활성화하고 정리할 때가 되면 이 노드를 찾기 위해 DOM을 다시 검색해야 해요. 대신, 나중에 정리해야 한다는 걸 기억했다면 쉽게 제거하기 위해 참조를 유지할 수 있었을 거예요! 🧹
 
-There's a lot to keep in mind as you develop your plugin. One of the most important being how to cleanup when the plugin is disabled. This may seem straightforward, but if you don't have it in mind as you develop, it may slip through the cracks. Say you add some text to the DOM and no longer have a reference to it. When it's time to disable and cleanup, you have to search through the DOM again just to find this node. Instead, if you had remembered that this will need to be cleaned up, you could have kept a reference in order to easily remove it later.
+이 플러그인을 제출하거나 다른 사람들과 공유하려고 한다면, 플러그인의 어떤 부분이 주관적인지 염두에 두는 게 좋아요. 예를 들어, 무언가가 포맷되거나 스타일링되는 방식이 어떤 사람에게는 좋아 보이지만 다른 사람에게는 그렇지 않을 수 있어요.
 
-If you're looking to submit this plugin, or share it with others, it's worth keeping in mind what parts of the plugin are opinionated. For example, the way something is formatted or styled may look good to some and not to others.
+개발하면서 이런 것들을 염두에 두면, 테마와 사용자들이 활용할 수 있도록 요소에 고유한 클래스를 추가하거나, 나중에 다룰 [플러그인 설정](./settings)을 추가할 수도 있어요! 🎨
 
-If you have these things in mind while you develop, you can add unique classes to elements for themes and users to take advantage of, or even add [plugin settings](./settings) which we'll get to a bit later.
+## 다음은?
 
-## What's Next?
-
-If you feel comfortable with everything so far, you're probably safe to move on to making your plugin by first [interacting with the dom](./dom). Otherwise, take the time and experiment with the plugin templates and see what feels right, maybe even brush up on your JavaScript skills.
+지금까지의 모든 내용이 편안하게 느껴지신다면, [DOM과 상호작용하기](./dom)부터 시작해서 플러그인을 만들어도 안전할 것 같아요! 그렇지 않다면 시간을 들여서 플러그인 템플릿들을 실험해보고 어떤 게 맞는지 확인해보세요. JavaScript 실력을 닦는 것도 좋구요! 화이팅! 🚀

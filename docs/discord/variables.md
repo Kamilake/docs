@@ -1,11 +1,13 @@
 ---
 order: 2
-description: Internal UI references.
+description: 내부 UI 참조 가이드
 ---
 
-# CSS Variables
+# CSS 변수들 (CSS Variables)
 
-Here you can get a reference of all the different Discord CSS variables currently available. We hope to add some more information on documentation on them over time.
+여기서 현재 사용 가능한 모든 Discord CSS 변수들에 대한 참조를 확인할 수 있어요! 시간이 지나면서 더 많은 정보와 문서를 추가할 예정이니 기대해 주세요! 🎨✨
+
+
 
 ## Main Variables
 

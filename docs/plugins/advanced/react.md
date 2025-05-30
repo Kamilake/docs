@@ -1,99 +1,99 @@
 ---
 order: 3
-description: Adding to an existing React tree.
+description: 기존 React 트리에 요소 추가하기 - 디스코드 UI에 나만의 컴포넌트 심기! 🌱
 ---
 
-# React Injection
+# React 주입 💉
 
-This guide involves [function patching](./patching.md). If you have not read that guide, please take look before continuing.
+이 가이드는 [함수 패칭](./patching.md)과 관련이 있어요. 그 가이드를 아직 읽지 않으셨다면 계속하기 전에 먼저 살펴보세요!
 
-## Background
+## 배경 지식 📚
 
-### What does it mean?
+### React 주입이 무엇을 의미하나요?
 
-When we say React Injection, we're referring to adding/removing/alterting components in the React render tree used by Discord. In the [React](../intermediate/react.md) section of the guide, we went over rendering our own components using `ReactDOM` which created our own React trees rendering outside of Discord's tree. With injection we can either be part of Discord's tree with our own elements, or we can modify Discord's tree before a render finishes.
+React 주입이라고 하면, 디스코드가 사용하는 React 렌더 트리에서 컴포넌트를 추가/제거/변경하는 것을 말해요. 가이드의 [React](../intermediate/react.md) 섹션에서는 `ReactDOM`을 사용해서 우리 자신의 컴포넌트를 렌더링하는 걸 다뤘는데, 이는 디스코드 트리 외부에서 렌더링되는 우리만의 React 트리를 만드는 거였어요. 주입을 사용하면 우리 자신의 요소로 디스코드 트리의 일부가 되거나, 렌더링이 완료되기 전에 디스코드의 트리를 수정할 수 있어요.
 
-### Why would I need it?
+### 왜 이게 필요할까요?
 
-1. If you want to take advantage of Discord's own components found through [Webpack searches](./webpack.md), many of them will need to be rendered inside Discord's tree because they depend on different React Contexts.
-1. If you want to add a component to the UI and not worry about using `onRemoved` or `MutationObserver` to constantly re-add your elements, patching a render function keeps things consistent.
-1. If you want to modify Discord's UI in a seamless way.
+1. [Webpack 검색](./webpack.md)을 통해 찾은 디스코드 자체의 컴포넌트들을 활용하고 싶다면, 그 중 많은 것들이 서로 다른 React Context에 의존하기 때문에 디스코드 트리 내부에서 렌더링되어야 해요.
+2. UI에 컴포넌트를 추가하면서 요소를 지속적으로 다시 추가하기 위해 `onRemoved`나 `MutationObserver`를 사용하는 걱정을 하고 싶지 않다면, 렌더 함수를 패칭하는 것이 일관성을 유지해줘요.
+3. 디스코드의 UI를 완벽하게 수정하고 싶다면 말이에요.
 
-### How can I do it?
+### 어떻게 할 수 있나요?
 
-::: warning
+::: warning 조심하세요! ⚠️
 
-It's important that you make your changes in an error-safe way whenever possible. React errors tend to propagate to the root node and show the "crashed client" screen.
-
-:::
-
-Well if you've got a hang of function patching, then you're already halfway there. You'll need to find your React component in an exposed module and override the render function with an `after` patch. From there you'll have to walk the rendered react nodes to find where you want to make your changes. There are traversal utilities in `BdApi` that can help with this, you'll see more about those in the walkthrough. Then you'll have to make your changes
-
-## Walkthrough
-
-### Setup
-
-::: warning
-
-Due to the nature of client modding, this section could be outdated by the time you read it since Discord's internals are always changing. However, the concepts used and learned here remain the same.
+가능한 한 오류에 안전한 방식으로 변경하는 것이 중요해요. React 오류는 루트 노드까지 전파되는 경향이 있어서 "클라이언트 크래시" 화면을 보여줄 수 있거든요.
 
 :::
 
-Make sure you've gone over the [DevTools](../../developers/devtools.md), [Function Patching](./patching.md), and [Webpack](./webpack.md) guides before this and have your React DevTools all set up.
+함수 패칭을 이해하셨다면 이미 절반은 온 거나 다름없어요! 노출된 모듈에서 React 컴포넌트를 찾고 `after` 패치로 렌더 함수를 오버라이드해야 해요. 거기서 렌더된 React 노드들을 걸어다니며 변경하고 싶은 곳을 찾아야 하죠. `BdApi`에는 이를 도와주는 순회 유틸리티들이 있어요. 연습에서 더 자세히 보실 거예요. 그 다음에는 변경사항을 만들어야 해요.
 
-What we want to target in this walkthrough is the little section at the top of your DM list.
+## 연습해보기 🎯
+
+### 준비하기
+
+::: warning 참고사항 📝
+
+클라이언트 모딩의 특성상, 디스코드의 내부 구조는 항상 변하고 있어서 여러분이 이걸 읽을 때쯤엔 이 섹션이 구식일 수도 있어요. 하지만 여기서 사용되고 배우는 개념들은 그대로 유지된답니다!
+
+:::
+
+이 가이드를 진행하기 전에 [개발자 도구](../../developers/devtools.md), [함수 패칭](./patching.md), [Webpack](./webpack.md) 가이드를 모두 보시고 React 개발자 도구를 모두 설정해주세요.
+
+이번 연습에서 타겟으로 삼을 것은 DM 목록 상단의 작은 섹션이에요.
 
 ![react_target](./img/react_target.png)
 
-### Finding The Target
+### 타겟 찾기 🎯
 
-We want to add a new button here, so let's select it in React DevTools components panel. Or at least select its closest parent. We find something like this.
+여기에 새 버튼을 추가하고 싶으니까, React 개발자 도구의 컴포넌트 패널에서 이걸 선택해보죠. 아니면 최소한 가장 가까운 부모를 선택해보세요. 이런 걸 찾게 될 거예요.
 
 ![react_parent](./img/react_parent.png)
 
-But take a look at the `props` on the right hand side. This seems to be just a simple container that is reusable and not specific to this component. It's not a good target for patching because it would have effects elsewhere as well. The first one that looks like it has potential is shown below.
+하지만 오른쪽의 `props`를 보세요. 이건 재사용 가능한 간단한 컨테이너일 뿐이고 이 컴포넌트에 특정하지 않은 것 같아요. 다른 곳에서도 효과가 나타날 수 있기 때문에 패칭하기에는 좋은 타겟이 아니에요. 잠재력이 있어 보이는 첫 번째 것은 아래와 같아요.
 
 ![react_candidate](./img/react_candidate.png)
 
-Let's take a look at this component and see if it's exported like we did in the previous chapter. To start, click to view the source of the component.
+이 컴포넌트를 살펴보고 이전 장에서 했던 것처럼 내보내지는지 확인해보죠. 시작하려면 컴포넌트의 소스를 보기 위해 클릭하세요.
 
 ![view_source](./img/view_source.png)
 
-And of course also beautify the code with the button a the bottom left. You'll see a render function much like this.
+그리고 물론 왼쪽 아래 버튼으로 코드도 정리해주세요. 이런 렌더 함수를 보게 될 거예요.
 
 ![react_render](./img/react_render.png)
 
-As we did in the last chapter, let's scroll up and check for this `i` to be exported. As we scroll up it appears that `i` is wrapped inside of this module and when we get to the top we can see only an object called `z` is exported. 
+지난 장에서 했던 것처럼 위로 스크롤해서 이 `i`가 내보내지는지 확인해보죠. 스크롤하다 보면 `i`는 이 모듈 내부에 래핑되어 있고 맨 위에 도달하면 `z`라는 객체만 내보내지는 걸 볼 수 있어요.
 
 ![react_exports](./img/react_exports.png)
 
-Scroll back and you can find this `z` that uses `i` internally and does not expose it in any other way. Let's go back to the Components panel and keep going up this subtree until we find another candidate. We find one at the top of our subtree.
+다시 스크롤해서 `i`를 내부적으로 사용하지만 다른 방식으로는 노출하지 않는 이 `z`를 찾을 수 있어요. React 개발자 도구의 컴포넌트 패널로 돌아가서 다른 후보를 찾을 때까지 이 서브트리를 계속 올라가봅시다. 우리 서브트리의 맨 위에서 하나를 찾았어요.
 
 ![react_ancestor](./img/react_ancestor.png)
 
-Let's take a look at the source once more. The code looks oddly familiar and it's already formatted. It's actually the same module we were looking at before! Except this time we are using the `z` component, so since we know this one is exported, we have found our target.
+소스를 다시 한 번 보죠. 코드가 이상하게 친숙해 보이고 이미 포맷되어 있어요. 실제로는 전에 보던 것과 같은 모듈이에요! 다만 이번에는 `z` 컴포넌트를 사용하고 있으니까, 이게 내보내진다는 걸 알고 있으므로 우리의 타겟을 찾은 거예요.
 
-### Getting The Target
+### 타겟 가져오기 🎣
 
-The next step to adding our button is finding a way to filter for this component through the Webpack module search. The easiest way is with keys, so let's take a look at this `z` object and see what's available.
+우리 버튼을 추가하는 다음 단계는 Webpack 모듈 검색을 통해 이 컴포넌트를 필터링할 방법을 찾는 거예요. 가장 쉬운 방법은 키를 사용하는 것이니까, 이 `z` 객체를 보고 사용할 수 있는 게 뭐가 있는지 확인해봅시다.
 
 ![react_component](./img/react_component.png)
 
-Unfortunately for us, this is a functional component, so there are no keys or prototypes to go off. A good option here is to search via strings, but we want to make sure we use something unique yet stable to changes. Since this seems to be the private channel list component, something related to that would be consistent across most updates. Near the top of this function we can see a call to `getPrivateChannelIds`, so let's try with this.
+불행히도 이건 함수형 컴포넌트라서 의존할 키나 프로토타입이 없어요. 여기서 좋은 옵션은 문자열로 검색하는 건데, 고유하면서도 변경에 안정적인 걸 사용하고 싶어요. 이게 개인 채널 목록 컴포넌트인 것 같으니까, 그와 관련된 건 대부분의 업데이트에서 일관성이 있을 거예요. 이 함수의 상단 근처에서 `getPrivateChannelIds` 호출을 볼 수 있으니까, 이걸로 시도해보죠.
 
-First, we want to try using `getAllByStrings` and see how many results we get. We do this to make sure our string choice is specific enough to select _only_ our target component.
+먼저 `getAllByStrings`를 사용해서 몇 개의 결과를 얻는지 확인하고 싶어요. 문자열 선택이 우리가 타겟으로 하는 컴포넌트_만_을 선택할 만큼 구체적인지 확인하기 위해서죠.
 
 ![webpack_allstrings](./img/webpack_allstrings.png)
 
-It seems this string actually works just fine. We got only one component, and it's the component we're targeting. But before we move on to patching, take a look at the return value we get with `getByStrings`. We get just the function itself. And if you remember your function patching from [our guide](./patching.md) then you know that this is not enough to patch. But we do know that this function is a default export, so we don't necessarily need to use `getWithKey`, we can simply add `{defaultExport: false}` as we talked about in our [Webpack](./webpack.md) guide.
+이 문자열이 잘 작동하는 것 같아요. 컴포넌트를 하나만 얻었고, 바로 우리가 타겟으로 하는 컴포넌트예요. 하지만 패칭으로 넘어가기 전에 `getByStrings`로 얻는 반환값을 보세요. 함수 자체만 얻었어요. [우리 가이드](./patching.md)에서 함수 패칭을 기억한다면 이것만으로는 패치하기에 충분하지 않다는 걸 알 거예요. 하지만 이 함수가 기본 내보내기라는 걸 알고 있으니까, 반드시 `getWithKey`를 사용할 필요는 없어요. [Webpack](./webpack.md) 가이드에서 이야기했듯이 `{defaultExport: false}`를 추가하기만 하면 돼요.
 
 ```js
 BdApi.Webpack.getByStrings("getPrivateChannelIds", {defaultExport: false});
 ```
 
-### Patching The Target
+### 타겟 패칭하기 🔧
 
-Now that we have our target component and our key `Z`, we can actually get to patching the component. The easiest way to understand what we want to do is to see it. So let's make that happen. Directly in your console you can try this out.
+이제 타겟 컴포넌트와 키 `Z`를 얻었으니, 실제로 컴포넌트를 패칭할 수 있어요. 우리가 하고 싶은 일을 이해하는 가장 쉬운 방법은 실제로 보는 거예요. 그럼 실행해봅시다! 콘솔에서 직접 이걸 시도해볼 수 있어요.
 
 ```js
 const PrivateChannels = BdApi.Webpack.getByStrings("getPrivateChannelIds", {defaultExport: false});
@@ -102,27 +102,27 @@ BdApi.Patcher.after("debug", PrivateChannels, "Z", (_, __, returnValue) => {
 });
 ```
 
-With this simple patch, we will log out the return value on ever render call but let the original return value still work. With that in place, try switching to a guild and then back to your DM list. You should see a new log in your console.
+이 간단한 패치로 모든 렌더 호출에서 반환값을 로그아웃하지만 원래 반환값이 여전히 작동하게 할 거예요. 이게 설정된 상태로 길드로 전환했다가 DM 목록으로 다시 돌아가보세요. 콘솔에 새로운 로그가 보일 거예요.
 
-::: details Right-Click
+::: details 우클릭 방법
 ![return_value](./img/return_value.png)
 :::
 
-::: details Function Location
+::: details 함수 위치 방법
 ![return_value_expanded](./img/return_value_expanded.png)
 :::
 
-What you see here if a fairly typical result of one of these render calls. Take a second and get familiar with the structure, it's likely you'll be seeing a lot more of them going forward. However, since we want to see where to add our component, expand the tree out like we did above in the second image.
+여기서 보는 건 이런 렌더 호출 중 하나의 상당히 전형적인 결과예요. 잠깐 시간을 내서 구조에 익숙해지세요. 앞으로 훨씬 더 많이 보게 될 가능성이 높거든요. 하지만 컴포넌트를 어디에 추가할지 보고 싶으니까, 위의 두 번째 이미지에서 했던 것처럼 트리를 펼쳐보세요.
 
-Take a look at the objects near the cursor in the image. This seems to be exactly where we want to render. Take a note of the object path to this object or copy it using the built-in tool.
+이미지에서 커서 근처의 객체들을 보세요. 바로 우리가 렌더링하고 싶은 곳인 것 같아요. 이 객체까지의 객체 경로를 기록하거나 내장 도구를 사용해서 복사하세요.
 
 ![react_path](./img/react_path.png)
 
-You'll end up with a path like `returnValue.props.children.props.children`. Also note that this is an array of children, so it's easy enough to just append to this array without any special handling. Let's give it a try in our patch.
+`returnValue.props.children.props.children` 같은 경로가 나올 거예요. 또한 이게 자식들의 배열이라는 것도 확인하세요. 그래서 특별한 처리 없이 이 배열에 그냥 추가하는 게 충분히 쉬워요. 우리 패치에서 시도해봅시다.
 
-::: tip
+::: tip 팁! 💡
 
-It's a good ideal to undo the previous patches with `BdApi.Patcher.unpatchAll("debug")` before subsequent patches.
+후속 패치를 하기 전에 `BdApi.Patcher.unpatchAll("debug")`로 이전 패치들을 취소하는 게 좋은 아이디어예요.
 
 :::
 
@@ -130,71 +130,71 @@ It's a good ideal to undo the previous patches with `BdApi.Patcher.unpatchAll("d
 const PrivateChannels = BdApi.Webpack.getByStrings("getPrivateChannelIds", {defaultExport: false});
 
 BdApi.Patcher.after("debug", PrivateChannels, "Z", (_, __, returnValue) => {
-    const myElement = BdApi.React.createElement("button", null, "Hello World!");
+    const myElement = BdApi.React.createElement("button", null, "안녕하세요 세상!");
     returnValue.props.children.props.children.push(myElement);
 });
 ```
 
-This patch should just add a simple button saying `Hello World` to this list of buttons. After patching be sure to switch views again to trigger a re-render.
+이 패치는 이 버튼 목록에 `안녕하세요 세상`이라고 하는 간단한 버튼을 추가할 거예요. 패치한 후에는 다시 렌더링을 트리거하기 위해 뷰를 전환해주세요.
 
 ![our_button](./img/our_button.png)
 
-And there we have it! A react button of our own creation rendered inside of Discord's React tree inside of Discord's UI. There are more complicated situations, but this should be a good jump start to help you get on your way. If you're interested in more, there's some additional information below.
+됐어요! 우리가 만든 React 버튼이 디스코드의 React 트리 내부에서 디스코드의 UI 내부에서 렌더링되고 있어요. 더 복잡한 상황들도 있지만, 이건 여러분이 시작하는 데 좋은 발판이 될 거예요. 더 관심이 있으시면 아래에 추가 정보가 있어요.
 
-## Tips & Tricks
+## 팁과 트릭 💫
 
-### Error Safety
+### 오류 안전성
 
-If your patch is dangerous or has potential for error, you should definitely be adding some sort of error safety to your patch. If the code itself is dangerous or complex, try using a `try..catch` where the `catch` returns the original return value.
+패치가 위험하거나 오류 가능성이 있다면, 패치에 어떤 종류의 오류 안전성을 추가해야 해요. 코드 자체가 위험하거나 복잡하다면, `catch`에서 원래 반환값을 반환하는 `try..catch`를 사용해보세요.
 
 ```js
 try {
-    // My patch info
+    // 내 패치 정보
 }
 catch {
     return returnValue;
 }
 ```
 
-You can also make use of error boundaries to prevent the error from crashing the client. Take a look at this [article from React](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary) for information on implementation.
+오류가 클라이언트를 크래시시키는 걸 방지하기 위해 오류 경계를 활용할 수도 있어요. 구현에 대한 정보는 React의 [이 글](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)을 참고하세요.
 
-### Multi-Patching
+### 다중 패칭
 
-One thing to keep in mind when making your patches is that you may not be the only plugin attempting to patch a certain component. There are a couple quick steps to massively improve your compatibility with one another.
+패치를 만들 때 염두에 둘 점 중 하나는 특정 컴포넌트를 패치하려고 시도하는 플러그인이 여러분만이 아닐 수도 있다는 거예요. 서로 호환성을 크게 개선하는 몇 가지 빠른 단계가 있어요.
 
-Let's say we want to add a child component where one doesn't exist. Simple as setting the `children` property to your component right? Well that works great but what about if another plugin wanted to do the same? It would have been better if you started with an array `[]` so future patches can just add to the array.
+자식 컴포넌트가 존재하지 않는 곳에 추가하고 싶다고 해봅시다. `children` 속성을 여러분의 컴포넌트로 설정하기만 하면 간단하죠? 이건 잘 작동하지만 다른 플러그인이 같은 걸 하고 싶다면 어떨까요? 미래의 패치들이 배열에 추가할 수 있도록 배열 `[]`로 시작하는 게 더 나았을 거예요.
 
-In general using arrays for children is preferred. Whether you're adding, modifying, or even removing components, trying to leave everything in the form of an array makes it easier for everyone.
+일반적으로 자식들에 배열을 사용하는 것이 선호돼요. 컴포넌트를 추가하든, 수정하든, 제거하든, 모든 걸 배열 형태로 남겨두려고 노력하는 것이 모든 사람에게 더 쉬워요.
 
-### Tree Traversal
+### 트리 순회
 
-Let's go back to our example from the walkthrough. We directly used the property path for the patch which is very vulnerable to breaking. If Discord even slightly changes the structure there, our patch will not work. Moreover, it will even cause errors and potentially crash the client. How can we do this differently? Well we know that we wanted to append to the array of buttons and the buttons have `key` values that identify them. But we don't want the buttons themselves, we want the `children` array. So what kind of filter could match that array? `children.some(element => element.key === "friends")`.
+연습에서의 예제로 돌아가봅시다. 패치에 속성 경로를 직접 사용했는데 이는 깨지기 매우 취약해요. 디스코드가 거기서 구조를 조금이라도 바꾸면 우리 패치는 작동하지 않을 거예요. 게다가 오류를 일으켜서 잠재적으로 클라이언트를 크래시시킬 수도 있어요. 어떻게 다르게 할 수 있을까요? 음, 우리는 버튼 배열에 추가하고 싶었고 버튼들은 그들을 식별하는 `key` 값을 가지고 있다는 걸 알아요. 하지만 우리는 버튼 자체가 아니라 `children` 배열을 원해요. 그럼 그 배열과 일치할 수 있는 필터는 어떤 종류일까요? `children.some(element => element.key === "friends")`.
 
-We can combine this with `BdApi.Utils.findInTree()` to automatically locate this specific array anywhere in the tree. First, we have to know that `findInTree` take 3 arguments, first the tree to walk. We already have that. Next it takes some filter that is checked against every property checked. We have that too. Last is an object with some configuration like which keys should be walked. In this case since we are always looking for a `children` array, we only need to walk `props` and `children`.
+이걸 `BdApi.Utils.findInTree()`와 결합해서 트리 어디서든 이 특정 배열을 자동으로 찾을 수 있어요. 먼저 `findInTree`가 3개의 인수를 받는다는 걸 알아야 해요. 첫 번째는 걸어다닐 트리예요. 이미 있어요. 다음은 확인되는 모든 속성에 대해 체크되는 필터예요. 이것도 있어요. 마지막은 어떤 키들을 걸어다녀야 하는지 같은 설정이 있는 객체예요. 이 경우 항상 `children` 배열을 찾고 있으니까, `props`와 `children`만 걸어다니면 돼요.
 
 ```js
 const myFilter = prop => Array.isArray(prop) && prop.some(element => element.key === "friends");
 BdApi.Utils.findInTree(returnValue, myFilter, {walkable: ["props", "children"]});
 ```
 
-Running this with the return value from earlier works exactly as expected.
+앞서의 반환값으로 이걸 실행하면 정확히 예상한 대로 작동해요.
 
 ![tree_traversal](./img/tree_traversal.png)
 
-Before we move on, notice that we added an `Array.isArray()` check to the filter. That's because `props` will also be walked but is not going to be an array, so we wanted to guard against that.
+계속하기 전에 필터에 `Array.isArray()` 체크를 추가했다는 걸 확인하세요. `props`도 걸어다니지만 배열이 아닐 거라서 그에 대해 보호하고 싶었거든요.
 
-Now we can actually rewrite our patch from earlier.
+이제 실제로 앞서의 패치를 다시 작성할 수 있어요.
 
 ```js
 const myFilter = prop => Array.isArray(prop) && prop.some(element => element.key === "friends");
 const PrivateChannels = BdApi.Webpack.getByStrings("getPrivateChannelIds", {defaultExport: false});
 
 BdApi.Patcher.after("debug", PrivateChannels, "Z", (_, __, returnValue) => {
-    const myElement = BdApi.React.createElement("button", null, "Hello World!");
+    const myElement = BdApi.React.createElement("button", null, "안녕하세요 세상!");
     const buttons = BdApi.Utils.findInTree(returnValue, myFilter, {walkable: ["props", "children"]});
     // highlight-next-line
     buttons?.push(myElement);
 });
 ```
 
-It's an easy change but it makes the code so much more robust. And take a look at the highlighted line. We're making use of the optional chaining operator `?.` which will protect us in cases where `findInTree` is unable to find our target due to Discord changes. Now you can take this technique and make even the most complex patches much more resilient to updates.
+쉬운 변경이지만 코드를 훨씬 더 견고하게 만들어요. 그리고 강조된 줄을 보세요. 옵셔널 체이닝 연산자 `?.`를 사용하고 있는데, 이는 디스코드 변경으로 인해 `findInTree`가 타겟을 찾을 수 없는 경우에 우리를 보호해줄 거예요. 이제 이 기법을 가져가서 가장 복잡한 패치도 업데이트에 훨씬 더 견고하게 만들 수 있어요.

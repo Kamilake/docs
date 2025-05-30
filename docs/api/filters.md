@@ -1,94 +1,101 @@
-# Filters
+# Filters (필터) 🔍
 
-Series of [Filters](./filters) to be used for finding webpack modules.
+webpack 모듈을 찾기 위해 사용되는 다양한 [Filters](./filters) 시리즈예요. 정말 유용한 도구들이 가득하답니다!
 
-## Properties
+## 속성 (Properties)
 
 
 
-## Methods
+## 메서드 (Methods)
 
-### byDisplayName
-Generates a function that filters by the `displayName` property.
+### byDisplayName 🏷️
+`displayName` 속성으로 필터링하는 함수를 생성해줘요!
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-name|string|Name the module should have
+name|string|모듈이 가져야 할 이름이에요
 
-**Returns:** `function` - A filter that checks for a `displayName` match
+**반환값:** `function` - `displayName` 일치를 확인하는 필터
+
 ___
 
-### byKeys
-Generates a function that filters by a set of properties.
+### byKeys 🔑
+속성들의 집합으로 필터링하는 함수를 생성해줘요.
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-keys|...string|List of property names
+keys|...string|속성 이름들의 목록이에요
 
-**Returns:** `function` - A filter that checks for a set of properties
+**반환값:** `function` - 속성들의 집합을 확인하는 필터
+
 ___
 
-### byProps <Badge type="danger">deprecated</Badge>
+### byProps <Badge type="danger">사용 중단됨 (deprecated)</Badge> ⚠️
 
 
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
-### byPrototypeFields <Badge type="danger">deprecated</Badge>
+### byPrototypeFields <Badge type="danger">사용 중단됨 (deprecated)</Badge> ⚠️
 
 
 
-**Returns:** `void`
+**반환값:** `void`
 ___
 
-### byPrototypeKeys
-Generates a function that filters by a set of properties on the object's prototype.
+### byPrototypeKeys 🧬
+객체의 프로토타입에 있는 속성들의 집합으로 필터링하는 함수를 생성해줘요.
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-props|...string|List of property names
+props|...string|속성 이름들의 목록이에요
 
-**Returns:** `function` - A filter that checks for a set of properties on the object's prototype.
+**반환값:** `function` - 객체의 프로토타입에서 속성들의 집합을 확인하는 필터
+
 ___
 
-### byRegex
-Generates a function that filters by a regex.
+### byRegex 📝
+정규표현식으로 필터링하는 함수를 생성해줘요.
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-search|RegExp|A RegExp to check on the module
-filter|function|Additional filter
+search|RegExp|모듈에서 확인할 정규표현식이에요
+filter|function|추가 필터예요
 
-**Returns:** `function` - A filter that checks for a regex match
+**반환값:** `function` - 정규표현식 일치를 확인하는 필터
+
 ___
 
-### byStoreName
-Generates a function that filters by a specific internal Store name.
+### byStoreName 🏪
+특정 내부 Store 이름으로 필터링하는 함수를 생성해줘요.
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-name|string|Name the store should have
+name|string|스토어가 가져야 할 이름이에요
 
-**Returns:** `function` - A filter that checks for a Store name match
+**반환값:** `function` - Store 이름 일치를 확인하는 필터
+
 ___
 
-### byStrings
-Generates a function that filters by strings.
+### byStrings 📄
+문자열들로 필터링하는 함수를 생성해줘요.
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-strings|...string|A list of strings
+strings|...string|문자열들의 목록이에요
 
-**Returns:** `function` - A filter that checks for a set of strings
+**반환값:** `function` - 문자열들의 집합을 확인하는 필터
+
 ___
 
-### combine
-Generates a combined function from a list of filters.
+### combine 🤝
+필터들의 목록으로부터 결합된 함수를 생성해줘요. 여러 필터를 하나로 합칠 때 정말 편리해요!
 
-| Parameter |  Type  |       Description      |
+| 매개변수 |  타입  |       설명      |
 |:----------|:------:|:----------------------:|
-filters|...function|A list of filters
+filters|...function|필터들의 목록이에요
 
-**Returns:** `function` - Combinatory filter of all arguments
+**반환값:** `function` - 모든 인수들의 결합 필터
+
 ___
