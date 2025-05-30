@@ -9,11 +9,11 @@ const bdIcon = localIconLoader(import.meta.url, "../docs/public/branding/logo_sm
 const VITEPRESS_CONFIG: UserConfig<DefaultTheme.Config> = {
     srcDir: "./docs",
     title: "BetterDiscord",
-    description: "User and developer documentation for using and creating addons for BetterDiscord.",
+    description: "BetterDiscord 애드온 사용 및 제작을 위한 사용자 & 개발자 문서입니다! 🎉",
     head: [
-        ["meta", {property: "og:site_name", content: "BetterDiscord Docs"}],
-        ["meta", {property: "og:title", content: "BetterDiscord Documentation & Guides"}],
-        ["meta", {property: "og:description", content: "User and developer documentation for using and creating addons for BetterDiscord."}],
+        ["meta", {property: "og:site_name", content: "BetterDiscord 문서"}],
+        ["meta", {property: "og:title", content: "BetterDiscord 문서 & 가이드"}],
+        ["meta", {property: "og:description", content: "BetterDiscord 애드온 사용 및 제작을 위한 사용자 & 개발자 문서입니다! 🎉"}],
         ["meta", {property: "og:image", content: "/branding/logo_solid.png"}],
         ["meta", {property: "og:image:alt", content: "BetterDiscord Logo"}],
 
@@ -25,8 +25,8 @@ const VITEPRESS_CONFIG: UserConfig<DefaultTheme.Config> = {
         ["meta", {property: "twitter:image:alt", content: "BetterDiscord Logo"}],
 
         ["meta", {name: "theme-color", content: "#3a71c1"}],
-        ["meta", {name: "description", content: "User and developer documentation for using and creating addons for BetterDiscord."}],
-        ["meta", {name: "keywords", content: "Discord, BetterDiscord, Better Discord, Discord Mod, Discord Themes, Discord Plugins, Discord Extensions, Discord Client Mod, Discord Hacks, Documentation, Docs, Guide, Tutorial"}],
+        ["meta", {name: "description", content: "BetterDiscord 애드온 사용 및 제작을 위한 사용자 & 개발자 문서입니다! 🎉"}],
+        ["meta", {name: "keywords", content: "Discord, BetterDiscord, Better Discord, Discord Mod, Discord 테마, Discord 플러그인, Discord 확장, Discord 클라이언트 모드, Discord 핵, 문서, 가이드, 튜토리얼"}],
         ["meta", {name: "author", content: "BetterDiscord"}],
 
         ["link", {rel: "icon", href: "/favicon/favicon-96x96.png"}],
@@ -36,19 +36,19 @@ const VITEPRESS_CONFIG: UserConfig<DefaultTheme.Config> = {
         siteTitle: false,
         logo: "/branding/logo_large.svg",
         nav: [
-            {text: "Home", link: "/"},
-            {text: "User Guides", link: "/users/", activeMatch: "/users/"},
+            {text: "홈", link: "/"},
+            {text: "사용자 가이드", link: "/users/", activeMatch: "/users/"},
             {
-                text: "Developer Guides",
+                text: "개발자 가이드",
                 items: [
-                    {text: "General", link: "/developers/", activeMatch: "/developers/"},
-                    {text: "Plugins", link: "/plugins/", activeMatch: "/plugins/"},
-                    {text: "Themes", link: "/themes/", activeMatch: "/themes/"},
+                    {text: "일반", link: "/developers/", activeMatch: "/developers/"},
+                    {text: "플러그인", link: "/plugins/", activeMatch: "/plugins/"},
+                    {text: "테마", link: "/themes/", activeMatch: "/themes/"},
                 ],
                 activeMatch: "/(?:developers|plugins|themes)/"
             },
             {
-                text: "Reference",
+                text: "레퍼런스",
                 items: [
                     {text: "API", link: "/api/", activeMatch: "/api/"},
                     {text: "Discord", link: "/discord/", activeMatch: "/discord/"},
@@ -71,11 +71,11 @@ const VITEPRESS_CONFIG: UserConfig<DefaultTheme.Config> = {
 
         editLink: {
             pattern: "https://github.com/BetterDiscord/docs/edit/main/docs/:path",
-            text: "Edit this page on GitHub",
+            text: "GitHub에서 이 페이지 편집하기",
         },
 
         lastUpdated: {
-            text: "Updated at",
+            text: "업데이트됨",
             formatOptions: {
                 dateStyle: "full",
                 timeStyle: "medium"
@@ -187,7 +187,7 @@ const SIDEBARS: VitePressSidebarOptions[] = [
         frontmatterOrderDefaultValue: 1,
     },
     {
-        rootGroupText: "Discord Internals",
+        rootGroupText: "Discord 내부 구조",
         documentRootPath: "docs",
         scanStartPath: "discord",
         basePath: "/discord/",

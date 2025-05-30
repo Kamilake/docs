@@ -1,127 +1,127 @@
 ---
 order: 2
-description: Customize BetterDiscord to your liking.
+description: BetterDiscord를 여러분 취향에 맞게 꾸며보세요! ✨
 ---
 
-# Configuration
+# 설정 가이드
 
-BetterDiscord has a number of settings and options for you to adjust your experience to your preference. This page tries to explain in more detail what each option does.
+BetterDiscord에는 여러분의 경험을 취향에 맞게 조정할 수 있는 다양한 설정과 옵션들이 있어요! 이 페이지에서는 각 옵션이 무엇을 하는지 자세히 설명해 드릴게요 😊
 
-## General
+## 일반 설정
 
-These are settings that control whole modules of BetterDiscord.
+BetterDiscord의 전체 모듈들을 제어하는 설정들이에요!
 
-### Voice Disconnect
+### 음성 연결 해제(Voice Disconnect)
 
-This option causes you to disconnect from a voice call when you close Discord. By default, Discord will try to auto-reconnect you which can be annoying to some.
+이 옵션을 활성화하면 Discord를 닫을 때 음성 통화에서 자동으로 연결이 해제돼요. 기본적으로 Discord는 자동으로 다시 연결하려고 시도하는데, 이게 짜증날 수 있거든요! 😅
 
-### Show Toasts
+### 토스트 알림 표시(Show Toasts)
 
-This option allows BetterDiscord to show you little notifications about what is happening in the client.
+이 옵션을 켜면 BetterDiscord가 클라이언트에서 무슨 일이 일어나고 있는지 작은 알림들로 보여줘요! 🍞
 
-### Disable Media Keys
+### 미디어 키 비활성화(Disable Media Keys)
 
-This option will prevent Discord's embedded players from hijacking your keyboard media keys which prevents them from being used in other applications.
+이 옵션은 Discord의 내장 플레이어가 키보드의 미디어 키들을 독점하는 걸 방지해서, 다른 애플리케이션에서도 사용할 수 있게 해줘요! 🎵
 
 
 
-## Addon Manager
+## 애드온 관리자(Addon Manager)
 
-Settings related to how BetterDiscord handles addons.
+BetterDiscord가 애드온들을 어떻게 처리할지에 관한 설정들이에요.
 
-### Show Addon Errors
+### 애드온 오류 표시(Show Addon Errors)
 
-This option lets BetterDiscord show you errors found on startup. If you are expecting errors for whatever reason, it may be useful to disable this.
+이 옵션을 켜면 BetterDiscord가 시작할 때 발견된 오류들을 보여줘요. 어떤 이유로든 오류를 예상하고 있다면, 이걸 끄는 게 유용할 수 있어요! 🚨
 
-### Edit Action
+### 편집 동작(Edit Action)
 
-This option determines what should happen when you click the edit button on an addon.
+이 옵션은 애드온에서 편집 버튼을 클릭했을 때 무슨 일이 일어날지 결정해요! ✏️
 
 
 
-## Custom CSS
+## 커스텀 CSS
 
-### Custom CSS
+### 커스텀 CSS
 
-This option allows you to completely disable the custom CSS system. If you don't use it, turning this off saves you a bit of RAM and CPU power.
+이 옵션을 사용하면 커스텀 CSS 시스템을 완전히 비활성화할 수 있어요. 사용하지 않는다면 이걸 끄면 RAM과 CPU 파워를 약간 절약할 수 있답니다! 💨
 
-### Live Update
+### 실시간 업데이트(Live Update)
 
-This option lets the CSS editor update as you type rather than waiting for you to click the button.
+이 옵션을 켜면 CSS 에디터가 버튼을 클릭하기를 기다리지 않고 타이핑하는 대로 바로바로 업데이트돼요! ⚡
 
-### Editor Location
+### 에디터 위치(Editor Location)
 
-This option determines which editor should open when editing custom CSS.
+이 옵션은 커스텀 CSS를 편집할 때 어떤 에디터가 열릴지 결정해요! 🖥️
 
 
-## Editor Preferences
+## 에디터 환경설정(Editor Preferences)
 
-Settings that affect all editors used inside BetterDiscord.
+BetterDiscord 내에서 사용되는 모든 에디터들에 영향을 주는 설정들이에요.
 
-### Line Numbers
+### 줄 번호(Line Numbers)
 
-This option simply determines whether or not line numbers should be shown.
+이 옵션은 단순히 줄 번호를 보여줄지 말지를 결정해요! 📝
 
-### Minimap
+### 미니맵(Minimap)
 
-This option determines if the minimap that represents the code on the right-hand side should be hidden or shown.
+이 옵션은 오른쪽에 코드를 나타내는 미니맵을 숨길지 보여줄지 결정해요! 🗺️
 
-### Reference Tooltips
+### 참조 툴팁(Reference Tooltips)
 
-This option shows tooltips when hovering over parts of your code. For CSS, this would be selector information. For JavaScript, this would be variable information.
+이 옵션을 켜면 코드의 특정 부분에 마우스를 올렸을 때 툴팁을 보여줘요. CSS의 경우 선택자 정보를, JavaScript의 경우 변수 정보를 보여준답니다! 💡
 
-### Quick Suggestions
+### 빠른 제안(Quick Suggestions)
 
-This option enables the editor to show suggestions and autocomplete as you type.
+이 옵션을 활성화하면 에디터가 타이핑하는 동안 제안과 자동완성을 보여줘요! 🚀
 
-### Font Size
+### 폰트 크기(Font Size)
 
-This option determines the default font size to use in the editor.
+이 옵션은 에디터에서 사용할 기본 폰트 크기를 결정해요! 📏
 
-### Show Whitespace
+### 공백 표시(Show Whitespace)
 
-This option determines when whitespace characters such as space and newlines should have a visible indicator.
+이 옵션은 스페이스나 개행 문자 같은 공백 문자들에 대해 언제 시각적 표시기를 보여줄지 결정해요! 👀
 
 
 
-## Window Preferences
+## 윈도우 환경설정(Window Preferences)
 
-Settings related to the main window of Discord.
+Discord 메인 윈도우와 관련된 설정들이에요!
 
-### Enable Transparency
+### 투명도 활성화(Enable Transparency)
 
-This option enables Electron's transparency mode. By itself, this option doesn't do much, but if you have a theme that changes the opacity of the root element, you can actually see through the Discord client to your desktop. On Windows, having this enabled breaks aero snapping and other common window features. This is a limitation of Electron itself and not something BetterDiscord can fix.
+이 옵션은 Electron의 투명도 모드를 활성화해요! 자체적으로는 별로 하는 일이 없지만, 루트 요소의 불투명도를 변경하는 테마가 있다면 실제로 Discord 클라이언트를 통해 데스크탑까지 볼 수 있어요! 😮 Windows에서는 이 기능을 켜면 에어로 스냅과 다른 일반적인 윈도우 기능들이 작동하지 않아요. 이건 Electron 자체의 한계이고 BetterDiscord가 고칠 수 있는 문제가 아니에요.
 
-### Remove Minimum Size
+### 최소 크기 제거(Remove Minimum Size)
 
-This option gets rid of Discord's forced minimum window size. For many users, this limit is too large to be able to customize their viewscreen.
+이 옵션은 Discord의 강제 최소 윈도우 크기를 없애줘요! 많은 사용자들에게는 이 제한이 너무 커서 화면을 커스터마이징하기 어려워요 📏
 
 
 
-## Developer
+## 개발자(Developer)
 
-Settings that are mostly for developers. Some power users may find them of interest.
+주로 개발자들을 위한 설정들이에요. 일부 파워 유저들도 관심을 가질 수 있어요! 🤓
 
-### Debug Logs
+### 디버그 로그(Debug Logs)
 
-This option causes BetterDiscord to output everything from the chromium console into a `debug.log` file in the BetterDiscord folder. Best to not have this on all the time and only when debugging crashing issues.
+이 옵션을 켜면 BetterDiscord가 크로미움 콘솔의 모든 내용을 BetterDiscord 폴더의 `debug.log` 파일로 출력해요. 항상 켜두지 말고 충돌 문제를 디버깅할 때만 사용하는 게 좋아요! 📊
 
-### DevTools
+### 개발자 도구(DevTools)
 
-This option allows you to open the chromium devtools with the usual `ctrl`+`shift`+`i` combination. If you're not a developer, best to leave this off.
+이 옵션을 켜면 평소처럼 `ctrl`+`shift`+`i` 조합으로 크로미움 개발자 도구를 열 수 있어요! 개발자가 아니라면 끄고 두는 게 좋아요 🔧
 
-### Debugger Hotkey
+### 디버거 단축키(Debugger Hotkey)
 
-This option adds a keybind to `F8` that allows you to activate the `debugger` only when DevTools is open.
+이 옵션은 `F8`에 키바인드를 추가해서 DevTools가 열려있을 때만 `debugger`를 활성화할 수 있게 해줘요! 🔍
 
-### React Developer Tools
+### React 개발자 도구(React Developer Tools)
 
-This option allows you to add RDT to Discord. Currently, it is required that you have a local Chrome installation with the RDT extension installed to that. BetterDiscord will then point to that local installation of RDT. This may change in the future.
+이 옵션을 사용하면 Discord에 RDT를 추가할 수 있어요! 현재는 RDT 확장이 설치된 로컬 Chrome 설치가 필요해요. 그러면 BetterDiscord가 그 로컬 RDT 설치를 가리키게 됩니다. 앞으로 바뀔 수도 있어요! ⚛️
 
-### Inspect Element Hotkey
+### 요소 검사 단축키(Inspect Element Hotkey)
 
-This option adds a new keybind `ctrl`+`shift`+`c` that opens DevTools and starts selecting elements. If DevTools are open it immediately activates the select element action.
+이 옵션은 새로운 키바인드 `ctrl`+`shift`+`c`를 추가해서 DevTools를 열고 요소 선택을 시작해요! DevTools가 이미 열려있다면 즉시 요소 선택 동작을 활성화해요 🎯
 
-### Stop DevTools Warning
+### DevTools 경고 중지(Stop DevTools Warning)
 
-This option stops Discord from printing out those large warnings you see in the console.
+이 옵션은 Discord가 콘솔에 출력하는 그 큰 경고문들을 중지시켜요! 🚫

@@ -1,90 +1,90 @@
 ---
 order: 2
-description: How to not BetterDiscord.
+description: BetterDiscord 없이 디스코드를 사용하는 방법이에요!
 ---
 
 
-# Dual Boot
+# 듀얼 부트 (Dual Boot)
 
-::: warning
+::: warning 주의해주세요!
 
-This feature requires some basic computer literacy.
-
-:::
-
-BetterDiscord allows you to return to vanilla Discord functionality without having to remove BetterDiscord. This is useful for those that like to switch back and forth. This is done using the `--vanilla` command line flag. There are two ways this can be used. You can either do this as a one-off or setup a shortcut for yourself to easily boot between normal Discord and BetterDiscord.
-
-
-## One-off
-
-Running vanilla Discord as a one-off means next time you launch Discord, BetterDiscord will be enabled.
-
-::: code-group
-```md [Windows]
-
-1. Ensure Discord is fully closed
-2. Right-click your existing Discord shortcut and select `Properties`
-3. Copy the `Target` field
-4. Open command prompt by pressing `⊞ win`+`r`
-5. Paste the value of the `Target` field and add a space and `--vanilla` at the end
-6. Click `OK` or press `Enter`
-
-```
-
-```md [Mac]
-
-1. Ensure Discord is fully closed
-2. Open iTerm app (`⌘ Command`+`Spacebar`)
-3. Paste and run `open /Applications/Discord.app --args --vanilla`
-
-```
-
-```md [Linux]
-
-1. Ensure Discord is fully closed
-2. Open preferred terminal
-3. Run `discord --vanilla`
-
-```
+이 기능을 사용하려면 기본적인 컴퓨터 사용 능력이 필요해요! 하지만 어렵지 않으니 걱정하지 마세요! 😊
 
 :::
 
-## Shortcut
+BetterDiscord를 제거하지 않고도 바닐라 디스코드 기능으로 돌아갈 수 있어요! 이 기능은 일반 디스코드와 BetterDiscord 사이를 자유롭게 전환하고 싶은 분들에게 정말 유용해요. `--vanilla` 명령줄 플래그를 사용하는 방법이랍니다. 두 가지 방법이 있어요! 🔄
 
-Creating a separate shortcut makes it easy to launch with either vanilla Discord or with BetterDiscord.
+
+## 일회성 사용
+
+일회성으로 바닐라 디스코드를 실행한다는 것은 다음에 디스코드를 실행할 때 BetterDiscord가 다시 활성화된다는 뜻이에요!
 
 ::: code-group
-```md [Windows]
+```md [Windows - 윈도우]
 
-1. Ensure Discord is fully closed
-2. Right-click your existing Discord shortcut and select `Create Shortcut`
-3. Right-click the new shortcut `Discord (2)` and select `Properties`
-4. In the target field add a space followed by `--vanilla` at the end of the field
-5. Click `OK`
-6. Rename your new shortcut to something like `Discord Vanilla`
-
-```
-
-```md [Mac]
-
-1. Ensure Discord is fully closed
-2. Open the Automator app (`⌘ Command`+`Spacebar`)
-3. Select `New Document` then `Application`
-4. From the menu on the left drag `Run Shell Script` to the right-hand side.
-5. On the right, in the textbox that appears, paste in `open -a '/Applications/Discord.app' --args --vanilla`
-6. At the top, name your application something like `Discord Vanilla` and set `Where` to be the `Applications` folder
-7. Go to `File > Save` to finalize
+1. 디스코드가 완전히 종료되었는지 확인해주세요
+2. 기존 디스코드 바로가기를 마우스 오른쪽 버튼으로 클릭하고 `속성`을 선택해주세요
+3. `대상` 필드를 복사해주세요
+4. `⊞ win`+`r`을 눌러서 명령 프롬프트를 열어주세요
+5. `대상` 필드의 값을 붙여넣고 끝에 공백과 `--vanilla`를 추가해주세요
+6. `확인`을 클릭하거나 `Enter`를 눌러주세요
 
 ```
 
-```md [Linux]
+```md [Mac - 맥]
 
-1. Ensure Discord is fully closed
-2. Create a new bash script (`vanilla.sh`) using a terminal editor such as `nano`
-3. The first line of the script should be the bash shebang such as `#!/bin/bash`
-4. On the next line put `discord --vanilla`
-5. Save the script and run `chmod +x vanilla.sh`
-6. Put the file on your distro's desktop for easy use
+1. 디스코드가 완전히 종료되었는지 확인해주세요
+2. iTerm 앱을 열어주세요 (`⌘ Command`+`Spacebar`)
+3. `open /Applications/Discord.app --args --vanilla`를 붙여넣고 실행해주세요
+
+```
+
+```md [Linux - 리눅스]
+
+1. 디스코드가 완전히 종료되었는지 확인해주세요
+2. 선호하는 터미널을 열어주세요
+3. `discord --vanilla`를 실행해주세요
+
+```
+
+:::
+
+## 바로가기 만들기
+
+별도의 바로가기를 만들면 바닐라 디스코드나 BetterDiscord를 쉽게 실행할 수 있어요! 정말 편리하죠? 😄
+
+::: code-group
+```md [Windows - 윈도우]
+
+1. 디스코드가 완전히 종료되었는지 확인해주세요
+2. 기존 디스코드 바로가기를 마우스 오른쪽 버튼으로 클릭하고 `바로가기 만들기`를 선택해주세요
+3. 새로운 바로가기 `Discord (2)`를 마우스 오른쪽 버튼으로 클릭하고 `속성`을 선택해주세요
+4. 대상 필드의 끝에 공백과 `--vanilla`를 추가해주세요
+5. `확인`을 클릭해주세요
+6. 새 바로가기의 이름을 `Discord Vanilla` 같은 이름으로 바꿔주세요
+
+```
+
+```md [Mac - 맥]
+
+1. 디스코드가 완전히 종료되었는지 확인해주세요
+2. Automator 앱을 열어주세요 (`⌘ Command`+`Spacebar`)
+3. `새로운 문서`를 선택한 다음 `응용 프로그램`을 선택해주세요
+4. 왼쪽 메뉴에서 `쉘 스크립트 실행`을 오른쪽으로 드래그해주세요
+5. 오른쪽에 나타나는 텍스트 상자에 `open -a '/Applications/Discord.app' --args --vanilla`를 붙여넣어주세요
+6. 상단에서 응용 프로그램 이름을 `Discord Vanilla` 같은 이름으로 정하고 `위치`를 `응용 프로그램` 폴더로 설정해주세요
+7. `파일 > 저장`으로 완료해주세요
+
+```
+
+```md [Linux - 리눅스]
+
+1. 디스코드가 완전히 종료되었는지 확인해주세요
+2. `nano` 같은 터미널 편집기를 사용해서 새로운 bash 스크립트(`vanilla.sh`)를 만들어주세요
+3. 스크립트의 첫 번째 줄은 `#!/bin/bash` 같은 bash shebang이어야 해요
+4. 다음 줄에 `discord --vanilla`를 입력해주세요
+5. 스크립트를 저장하고 `chmod +x vanilla.sh`를 실행해주세요
+6. 쉽게 사용할 수 있도록 파일을 배포판의 데스크톱에 놓아주세요
 
 ```
 
